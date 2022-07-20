@@ -1,1 +1,1 @@
-Competitive Programming Algorithms
+This repository contais competitive programming algorithms
