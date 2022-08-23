@@ -1,6 +1,3 @@
-int n, dist[mxn], memo[mxn], cont, pai[mxn];
-vector<int> tree[mxn];
-
 void bfs(int x){
 	memset(memo, 0, sizeof (memo)); 
 	memset(dist, 0, sizeof (dist));
