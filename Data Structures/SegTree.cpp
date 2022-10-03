@@ -9,17 +9,17 @@ void build(int node, int l, int r){
     tree[node]=tree[2*node]+tree[2*node+1];
 }
 
-void update(int node, int l, int r, int id, int x){
+void upd(int node, int l, int r, int id, int val){
     if(l==r){
-        tree[node]=x;
-        v[l]=x;
+        tree[node]=val;
+        v[l]=val;
         return;
     }
     int mid=(l+r)>>1;
     if(l<=id && id<=mid){
-        update(2*node, l, mid, id, x);
+        upd(2*node, l, mid, id, val);
     }else{
-        update(2*node+1, mid+1, r, id, x);
+        upd(2*node+1, mid+1, r, id, val);
     }
     tree[node]=tree[2*node]+tree[2*node+1];
 }
