@@ -4,7 +4,6 @@ using namespace std;
 #define MOD 1000000009
 #define mod(x, m) (((x % m) + m) % m)
 #define mxn 100005
-#define mxm 200005
 #define mxm 505
 #define f first
 #define s second
@@ -16,7 +15,7 @@ using namespace std;
 #define fastio ios_base::sync_with_stdio(false), cin.tie(nullptr)
 #define sz(x) (int)x.size()
 #define all(x) x.begin(), x.end()
-typedef long long ll
+typedef long long ll;
 typedef pair<string, int> pii;
 typedef pair<int, pii> pip;
 
