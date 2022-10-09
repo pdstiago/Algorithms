@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define MOD 1000000009
+#define MOD 1000000007
 #define mod(x, m) (((x % m) + m) % m)
 #define mxn 100005
 #define mxm 505
@@ -16,7 +16,7 @@ using namespace std;
 #define sz(x) (int)x.size()
 #define all(x) x.begin(), x.end()
 typedef long long ll;
-typedef pair<string, int> pii;
+typedef pair<int, int> pii;
 typedef pair<int, pii> pip;
 
 int main(){
