@@ -21,3 +21,6 @@ while(!fila.empty()){
         }
     }
 }
+for(int i:resp){
+    cout << i << es;
+}
