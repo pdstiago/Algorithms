@@ -4,7 +4,6 @@ for(int i=1; i<=m; i++){
     grau[b]++;
     vec[a].pb(b);
 }
-vector<int> resp;
 queue<int> fila;
 for(int i=1; i<=n; i++){
     if(!grau[i]){
@@ -21,7 +20,4 @@ while(!fila.empty()){
             fila.push(i);
         }
     }
-}
-for(int i:resp){
-    cout << i << es;
 }
