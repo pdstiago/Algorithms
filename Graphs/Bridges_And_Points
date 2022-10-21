@@ -1,0 +1,20 @@
+void dfs(int x, int p){
+    memo[x]=1;
+    tin[x]=low[x]=++cont;
+    int children=0;
+    for(int i:vec[x]){
+        if(i==p) continue;
+        if(memo[i]){
+            low[x]=min(low[x], tin[i]);
+        }else{
+            dfs(i, x);
+            low[x]=min(low[x], low[i]);
+            if(low[i]>low[x]) bridges.pb({x, i});
+            if(low[i]>=tin[x] && p!=-1) artic[x]=1;
+            children++;
+        }
+    }
+    if(!p && children>1){
+        artic[x]=1;
+    }
+}
