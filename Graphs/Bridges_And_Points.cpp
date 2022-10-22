@@ -30,10 +30,11 @@ void find_bridges_and_points(){
             dfs(i, 0);
         }
     }
+    cout << endl << "Points: " << endl;
     for(int i=1; i<=n; i++){
         cout << artic[i] << es;
     }
-    cout << endl;
+    cout << endl << endl << "Bridges: " << endl;
     sort(all(bridges));
     for(pii i:bridges){
         cout << i.f << es << i.s << endl;
