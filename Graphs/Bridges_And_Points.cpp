@@ -12,11 +12,11 @@ void dfs(int x, int p){
             if(low[i]>tin[x]){
                 bridges.pb({min(i, x), max(i, x)});
             }
-            if(low[i]>=tin[x] && p!=-1) artic[x]=1;
+            if(low[i]>=tin[x] && p) artic[x]=1;
             children++;
         }
     }
-    if(p==-1 && children>1) artic[x]=1;
+    if(!p && children>1) artic[x]=1;
 }
 
 void find_bridges_and_points(){
