@@ -7,14 +7,17 @@ ll cross(pii a, pii b, pii c){
 void ch(){
     sort(v, v+n);
     vector<pii> upper, lower, convex;
+    
+    // a condição do cross será < quando incluir colinear, senão <=
+    
     for(int i=0; i<n; i++){
-        while(sz(upper)>1 && cross(upper[sz(upper)-2], upper[sz(upper)-1], v[i])<=0){
+        while(sz(upper)>1 && cross(upper[sz(upper)-2], upper[sz(upper)-1], v[i])<0){
             upper.pop_back();
         }
         upper.pb(v[i]);
     }
     for(int i=n-1; i>=0; i--){
-        while(sz(lower)>1 && cross(lower[sz(lower)-2], lower[sz(lower)-1], v[i])<=0){
+        while(sz(lower)>1 && cross(lower[sz(lower)-2], lower[sz(lower)-1], v[i])<0){
             lower.pop_back();
         }
         lower.pb(v[i]);
