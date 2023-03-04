@@ -1,15 +1,9 @@
 void upd(int x, int val){
-    while(x<=n){
-        bit[x]+=val;
-        x+=x&-x;
-    }
+    for(; x<=n; x+=x&-x) bit[x]+=val;
 }
- 
+
 int sum(int x){
     int ans=0;
-    while(x>0){
-        ans+=bit[x];
-        x-=x&-x;
-    }
+    for(; x; x-=x&-x) ans+=bit[x];
     return ans;
 }
