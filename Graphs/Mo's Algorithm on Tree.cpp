@@ -1,16 +1,7 @@
 struct query{
     int l, r, id, lca;
 }q[mxm];
-bool ord(query a, query b){
-    if(a.l/len!=b.l/len){
-        return make_pair(a.l, a.r)<
-        make_pair(b.l, b.r);
-    }
-    if(a.l/len & 1){
-        return a.r<b.r;
-    }
-    return a.r>b.r;
-}
+//same ord of regular mo's
 void dfs(int x, int p){
     tin[x]=timer++;
     st.pb(x);
@@ -30,6 +21,8 @@ void construct(){
         int c=lca(a, b);
         if(tin[a]>tin[b]) swap(a, b);
         if(a==c){
+            //se o valor tiver na aresta, então não precisa do q[i].lca e
+            //q[i].l=tout[b], q[i].r=tout[a]-1;
             q[i].l=tin[a], q[i].r=tin[b];
             q[i].lca=-1;
         }else{
@@ -60,6 +53,7 @@ void remove(int x){
 }
 void mos(){ //index em 0 - O((N+M)*sqrt(N))
     sort(q, q+m, ord);
+    //se o valor tiver na aresta curl=1, curr=0;
     int curl=0, curr=-1;
     for(int i=0; i<m; i++){
         while(curl>q[i].l){
