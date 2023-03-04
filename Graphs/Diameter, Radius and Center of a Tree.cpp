@@ -23,8 +23,8 @@ void find_tree(){
 	int maior=-1, pos;
 	for(int i=1; i<=n; i++){
 		if(dist[i]>maior){
-		    maior=dist[i];
-		    pos=i;
+			maior=dist[i];
+			pos=i;
 		}
 	}
 	bfs(pos);
