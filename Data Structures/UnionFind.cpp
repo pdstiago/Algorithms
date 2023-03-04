@@ -6,11 +6,14 @@ int ff(int x){
 void uu(int x, int y){
     x=ff(x), y=ff(y);
     if(x==y) return;
-    if(peso[x]>=peso[y]){
-        pai[y]=x;
-        peso[x]++;
-    }else{
-        pai[x]=y;
-        peso[y]++;
+    if(peso[y]>peso[x]) swap(x, y);
+    pai[y]=x;
+    peso[x]+=peso[y];
+}
+
+void init(){
+    for(int i=1; i<=n; i++){
+        pai[i]=i;
+        peso[i]=1;
     }
 }
