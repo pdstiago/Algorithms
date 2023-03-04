@@ -1,43 +1,33 @@
-void bfs(int x){
-	memset(memo, 0, sizeof (memo)); 
-	memset(dist, 0, sizeof (dist));
-	queue<int> fila;
-	memo[x]=1;
-	fila.push(x);
-	while(!fila.empty()){
-		int no=fila.front();
-		fila.pop();
-		for(int i=0; i<tree[no].size() ; i++){
-			int v=tree[no][i];
-			if(memo[v]==0){
-				dist[v]=dist[no]+1;
-				memo[v]=1;
-				pai[v]=no;
-				fila.push(v);
-			}
-		}
-	}
+void dfs(int x, int p){
+    for(int i:vec[x]){
+        if(i==p) continue;
+        pai[i]=x;
+        dist[i]=dist[x]+1;
+        dfs(i, x);
+    }
 }
-void find_tree(){
-	bfs(1);
-	int maior=-1, pos;
-	for(int i=1; i<=n; i++){
-		if(dist[i]>maior){
-			maior=dist[i];
-			pos=i;
-		}
-	}
-	bfs(pos);
-	int diametro=-1, raio, centro, atual;
-	for(int i=1; i<=n; i++){
-		if(dist[i]>diametro){
-			diametro=dist[i];
-			atual=i;
-		}
-	}
-	raio=(diametro+1)/2;
-	while(dist[atual]>diametro/2){
-		atual=pai[atual];
-	}
-	centro=atual;
+void tree(){
+    int maior=0, p1, p2, diam, raio, centro, atual;
+    dfs(1, 0);
+    for(int i=1; i<=n; i++){
+        if(dist[i]>maior){
+            maior=dist[i];
+            p1=i;
+        }
+    }
+    dfs(p1, 0);
+    maior=0;
+    for(int i=1; i<=n; i++){
+        if(dist[i]>maior){
+            maior=dist[i];
+            p2=i;
+        }
+    }
+    diam=maior;
+    raio=(diam+1)/2;
+    atual=p2;
+    while(dist[atual]>diam/2){
+        atual=pai[atual];
+    }
+    centro=atual;
 }
