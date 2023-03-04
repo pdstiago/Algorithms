@@ -75,11 +75,11 @@ void mos(){ //index em 0 - O((N+M)*sqrt(N))
             remove(curr--);
         }
         if(q[i].lca!=-1){
-            add(q[i].flag);
+            add(q[i].lca);
         }
         resp[q[i].id]=ans;
         if(q[i].lca!=-1){
-            remove(q[i].flag);
+            remove(q[i].lca);
         }
     }
 }
