@@ -1,4 +1,4 @@
-void build(int node, int l, int r){
+void build(int node=1, int l=1, int r=n){
     if(l==r){
         tree[node]=v[l];
         return;
@@ -9,7 +9,7 @@ void build(int node, int l, int r){
     tree[node]=tree[2*node]+tree[2*node+1];
 }
 
-void upd(int node, int l, int r, int id, int val){
+void upd(int node=1, int l=1, int r=n, int id, int val){
     if(l==r){
         tree[node]=val;
         v[l]=val;
@@ -24,7 +24,7 @@ void upd(int node, int l, int r, int id, int val){
     tree[node]=tree[2*node]+tree[2*node+1];
 }
 
-int query(int node, int l, int r, int a, int b){
+int query(int node=1, int l=1, int r=n, int a, int b){
     if(b<l || a>r) return 0;
     if(l>=a && r<=b) return tree[node];
     int mid=(l+r)>>1;
