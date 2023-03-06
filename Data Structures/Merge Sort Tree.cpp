@@ -1,6 +1,6 @@
 vector<int> tree[4*mxn];
 
-void build(int node, int l, int r){
+void build(int node=1, int l=1, int r=n){
     if(l==r){
         tree[node].pb(v[l]);
         return;
@@ -11,7 +11,7 @@ void build(int node, int l, int r){
     merge(tree[2*node].begin(), tree[2*node].end(), tree[2*node+1].begin(), tree[2*node+1].end(), back_inserter(tree[node]));
 }
 
-int query(int node, int l, int r, int a, int b, int x){
+int query(int node=1, int l=1, int r=n, int a, int b, int x){
     if (b<l || a>r) return 0;
     if(l>=a && r<=b){
         //qnt de números iguais a x
