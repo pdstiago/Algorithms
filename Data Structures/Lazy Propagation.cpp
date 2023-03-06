@@ -9,7 +9,7 @@ void unlazy(int node, int l, int r){
     }
 }
 
-void build(int node, int l, int r){
+void build(int node=1, int l=1, int r=n){
     if(l==r){
         tree[node]=v[l];
         return;
@@ -20,7 +20,7 @@ void build(int node, int l, int r){
     tree[node]=tree[2*node]+tree[2*node+1];
 }
 
-void upd(int node, int l, int r, int a, int b, int val){
+void upd(int node=1, int l=1, int r=n, int a, int b, int val){
     unlazy(node, l, r);
     if(a>r || b<l) return;
     if(l>=a && r<=b){
@@ -34,7 +34,7 @@ void upd(int node, int l, int r, int a, int b, int val){
     tree[node]=tree[2*node]+tree[2*node+1];
 }
 
-int query(int node, int l, int r, int a, int b){
+int query(int node=1, int l=1, int r=n, int a, int b){
     unlazy(node, l, r);
     if(a>r || b<l) return 0;
     if(a<=l && b>=r){
