@@ -11,7 +11,7 @@ void build(int node=1, int l=1, int r=n){
     merge(tree[2*node].begin(), tree[2*node].end(), tree[2*node+1].begin(), tree[2*node+1].end(), back_inserter(tree[node]));
 }
 
-int query(int node=1, int l=1, int r=n, int a, int b, int x){
+int query(int a, int b, int x, int node=1, int l=1, int r=n){
     if (b<l || a>r) return 0;
     if(l>=a && r<=b){
         //qnt de números iguais a x
@@ -25,5 +25,5 @@ int query(int node=1, int l=1, int r=n, int a, int b, int x){
         return 0;
     }
     int mid=(l+r)>>1;
-    return query(2*node, l, mid, a, b, x)+query(2*node+1, mid+1, r, a, b, x);
+    return query(a, b, x, 2*node, l, mid)+query(a, b, x, 2*node+1, mid+1, r);
 }
