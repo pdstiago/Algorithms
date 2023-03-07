@@ -11,7 +11,7 @@ void dfs(int x=1, int p=0){
 }
 void hld(int x=1, int atual=1){
     head[x]=atual;
-	pos[x]=++cont;
+    pos[x]=++cont;
     upd(cont, v[x]);
     if(heavy[x]){
         hld(heavy[x], atual);
