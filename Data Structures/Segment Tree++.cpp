@@ -29,23 +29,23 @@ void build(int node=1, int l=1, int r=n){
     tree[node]=combine(tree[2*node], tree[2*node+1]);
 }
 
-void upd(int node=1, int l=1, int r=n, int id, int val){
+void upd(int id, int val, int node=1, int l=1, int r=n){
     if(l==r){
         tree[node]=make_node(val);
         return;
     }
     int mid=(l+r)>>1;
     if(l<=id && id<=mid){
-        upd(2*node, l, mid, id, val);
+        upd(id, val, 2*node, l, mid);
     }else{
-        upd(2*node+1, mid+1, r, id, val);
+        upd(id, val, 2*node+1, mid+1, r);
     }
     tree[node]=combine(tree[2*node], tree[2*node+1]);
 }
 
-node query(int node=1, int l=1, int r=n, int a, int b){
+node query(int a, int b, int node=1, int l=1, int r=n){
     if(b<l || a>r) return make_node(0);
     if(l>=a && r<=b) return tree[node];
     int mid=(l+r)>>1;
-    return combine(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
+    return combine(query(a, b, 2*node, l, mid), query(a, b, 2*node+1, mid+1, r));
 }
