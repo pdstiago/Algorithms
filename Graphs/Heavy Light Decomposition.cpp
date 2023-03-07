@@ -21,14 +21,14 @@ void hld(int x=1, int atual=1){
         hld(i, i);
     }
 }
-int query_hld(int a, int b) {
+int query_hld(int a, int b){
     int ans=0;
-	while(head[a]!=head[b]){
-		if(pos[head[a]]<pos[head[b]]) swap(a, b);
-		ans=max(ans, query_seg(pos[head[a]], pos[a]));
-		a=pai[head[a]];
-	}
-	if(pos[a]>pos[b]) swap(a, b);
-	ans=max(ans, query_seg(pos[a], pos[b]));
-	return ans;
+    while(head[a]!=head[b]){
+        if(pos[head[a]]<pos[head[b]]) swap(a, b);
+        ans=max(ans, query_seg(pos[head[a]], pos[a]));
+        a=pai[head[a]];
+    }
+    if(pos[a]>pos[b]) swap(a, b);
+    ans=max(ans, query_seg(pos[a], pos[b]));
+    return ans;
 }
