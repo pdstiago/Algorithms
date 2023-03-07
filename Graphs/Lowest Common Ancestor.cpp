@@ -12,9 +12,7 @@ void dfs(int x, int p){
     }
 }
 int lca(int a, int b){
-    if(lv[a]<lv[b]){
-        swap(a, b);
-    }
+    if(lv[a]<lv[b]) swap(a, b);
     for(int i=18; i>=0; i--){
         if(lv[a]-(1<<i)>=lv[b]){
             a=anc[a][i];
