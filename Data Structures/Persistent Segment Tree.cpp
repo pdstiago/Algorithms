@@ -19,7 +19,7 @@ no* build(int l=1, int r=n){
     return new no(build(l, mid), build(mid+1, r));
 }
 
-no* upd(no *node, int l=1, int r=n, int id, int val){
+no* upd(no *node, int l, int r, int id, int val){
     if(l==r){
         return new no(val);
     }
@@ -30,7 +30,7 @@ no* upd(no *node, int l=1, int r=n, int id, int val){
     return new no(node->l, upd(node->r, mid+1, r, id, val));
 }
 
-int query(no *node, int l=1, int r=n, int a, int b){
+int query(no *node, int l, int r, int a, int b){
     if(b<l || a>r) return 0;
     if(l>=a && r<=b){
         return node->val;
@@ -41,5 +41,5 @@ int query(no *node, int l=1, int r=n, int a, int b){
 
 //no *version[mxn];
 //version[1]=build();
-//version[++cont]=upd(version[cont-1], c, d);
-//query(version[k], c, d)
+//version[++cont]=upd(version[cont-1], 1, n, c, d);
+//query(version[k], 1, n, c, d)
