@@ -11,19 +11,22 @@ void dfs(int x, int p){
         dfs(i, x);
     }
 }
-int lca(int a, int b){
+pii lca(int a, int b){
     if(lv[a]<lv[b]) swap(a, b);
+    int dist=0;
     for(int i=18; i>=0; i--){
         if(lv[a]-(1<<i)>=lv[b]){
+            dist+=(1<<i);
             a=anc[a][i];
         }
     }
-    if(a==b) return a;
+    if(a==b) return {a, dist};
     for(int i=18; i>=0; i--){
         if(anc[a][i]!=-1 && anc[a][i]!=anc[b][i]){
-            a=anc[a][i];
-            b=anc[b][i];
+            a=anc[a][i], b=anc[b][i];
+            dist+=2*(1<<i);
         }
     }
-    return anc[a][0];
+    dist+=2;
+    return {anc[a][0], dist};
 }
