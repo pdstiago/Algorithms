@@ -1,4 +1,4 @@
-void dfs(int x, int p){
+void dfs(int x=1, int p=0){
     for(int i:vec[x]){
         if(i==p) continue;
         dist[i]=dist[x]+1;
@@ -7,7 +7,7 @@ void dfs(int x, int p){
 }
 void tree(){
     int p1, p2, centro, diam=-1, raio=INF;
-    dfs(1, 0);
+    dfs();
     for(int i=1; i<=n; i++){
         if(dist[i]>diam){
             diam=dist[i];
@@ -15,7 +15,7 @@ void tree(){
         }
     }
     memset(dist, 0, sizeof(dist));
-    dfs(p1, 0);
+    dfs(p1);
     for(int i=1; i<=n; i++) exc[i]=dist[i];
     diam=-1;
     for(int i=1; i<=n; i++){
@@ -25,7 +25,7 @@ void tree(){
         }
     }
     memset(dist, 0, sizeof(dist));
-    dfs(p2, 0);
+    dfs(p2);
     for(int i=1; i<=n; i++) exc[i]=max(exc[i], dist[i]);
     for(int i=1; i<=n; i++){
         if(exc[i]<raio) raio=exc[i], centro=i;
