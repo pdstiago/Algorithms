@@ -11,7 +11,16 @@ void dfs2(int x, int c){
         if(!comp[i]) dfs2(i, c);
     }
 }
-void sat(){
+void add(int x, int sx, int y, int sy){
+    sx^=1, sy^=1;
+    
+    vec[x+m*sx].pb(y+m*(!sy));
+    vec[y+m*sy].pb(x+m*(!sx));
+ 
+    vec2[y+m*(!sy)].pb(x+m*sx);
+    vec2[x+m*(!sx)].pb(y+m*sy);
+}
+int sat(){
     for(int i=1; i<=n; i++){
         int a, b, c1, c2;
         char sa, sb;
@@ -20,23 +29,10 @@ void sat(){
         // f = (x1 ou y1) e ... (xn ou yn), se f == 1, então é possível
         // (x1 ou y1) = x1 -> ~y1 = y1 -> ~x1
         // se x1 e ~x1 estiverem na mesma scc é impossível
-        if(sa=='+') c1=0;
-        if(sa=='-') c1=m;
+        c1=(sa=='+'?1:0);
+        c2=(sb=='+'?1:0);
     
-        if(sb=='+') c2=m;
-        if(sb=='-') c2=0;
-    
-        vec[a+c1].pb(b+c2);
-        vec2[b+c2].pb(a+c1);
-    
-        if(sa=='+') c1=m;
-        if(sa=='-') c1=0;
-    
-        if(sb=='+') c2=0;
-        if(sb=='-') c2=m;
-    
-        vec[b+c2].pb(a+c1);
-        vec2[a+c1].pb(b+c2);
+        add(a, c1, b, c2);
     }
     for(int i=1; i<=2*m; i++){
         if(!memo[i]) dfs(i);
@@ -47,8 +43,6 @@ void sat(){
             dfs2(st[i], ++cont);
         }
     }
-    char resp[mxn];
-    
     for(int i=1; i<=m; i++){
         if(comp[i]==comp[i+m]){
             cout << "IMPOSSIBLE" << endl;
@@ -56,4 +50,5 @@ void sat(){
         }
         resp[i]=comp[i]>comp[i+m]?'-':'+';
     }
+    return 1;
 }
