@@ -12,19 +12,13 @@ int query(int l, int r){ //index em 0, logo query(b-1, c-1)
     int ans=0;
     int cl=l/len, cr=r/len;
     if(cl==cr){
-        for(int i=l; i<=r; i++){
-            ans+=v[i];
-        }
+        for(int i=l; i<=r; i++) ans+=v[i];
     }else{
-        for(int i=l; i<=(cl+1)*len-1; i++){
-            ans+=v[i];
-        }
-        for(int i=cl+1; i<=cr-1; i++){
-            ans+=block[i];
-        }
-        for(int i=cr*len; i<=r; i++){
-            ans+=v[i];
-        }
+        for(int i=l; i<=(cl+1)*len-1; i++) ans+=v[i];
+        
+        for(int i=cl+1; i<=cr-1; i++) ans+=block[i];
+        
+        for(int i=cr*len; i<=r; i++) ans+=v[i];
     }
     return ans;
 }
