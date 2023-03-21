@@ -44,10 +44,7 @@ int sat(){
         }
     }
     for(int i=1; i<=m; i++){
-        if(comp[i]==comp[i+m]){
-            cout << "IMPOSSIBLE" << endl;
-            return 0;
-        }
+        if(comp[i]==comp[i+m]) return 0;
         resp[i]=comp[i]>comp[i+m]?'-':'+';
     }
     return 1;
