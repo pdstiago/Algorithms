@@ -8,8 +8,8 @@ void upd(int id, int x){ //index em 0, logo upd(b-1, c)
     v[id]=x;
     block[id/len]+=v[id];
 }
-ll query(int r){
-    ll ans=0;
+int query(int r){
+    int ans=0;
     for(int i=0; i<r/len; i++){
         ans+=block[i];
     }
@@ -18,6 +18,6 @@ ll query(int r){
     }
     return ans;
 }
-ll query(int l, int r){ //mesmo pelo index em 0, query(b, c), sem diminuir
+int query(int l, int r){ //mesmo pelo index em 0, query(b, c), sem diminuir
     return query(r)-query(l-1);
 }
