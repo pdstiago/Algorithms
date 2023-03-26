@@ -11,12 +11,12 @@ ull modpow(ull b, ull e, ull mod){
 ull pollard(ull n){ // O(N^(1/4))
     auto f = [n](ull x, ull k) { return modmul(x, x, n) + k; };
     ull x = 0, y = 0, t = 30, prd = 2, i = 1, q;
-    while (t++ % 40 || gcd(prd, n) == 1) {
+    while (t++ % 40 || __gcd(prd, n) == 1) {
         if (x == y) x = ++i, y = f(x, i);
         if ((q = modmul(prd, max(x,y) - min(x,y), n))) prd = q;
         x = f(x, i), y = f(f(y, i), i);
     }
-    return gcd(prd, n);
+    return __gcd(prd, n);
 }
 bool isPrime(ull n){ // O(logN)
     if (n < 2 || n % 6 % 4 != 1) return (n | 1) == 3;
