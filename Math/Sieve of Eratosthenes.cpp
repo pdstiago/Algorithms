@@ -1,4 +1,4 @@
-void crivo(){
+void crivo(){ // O(N(log(logN)))
     n_primo[1]=1;
     for(int i=2; i<=n; i++){
         if(n_primo[i]) continue;
