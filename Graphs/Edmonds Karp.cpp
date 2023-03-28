@@ -19,7 +19,7 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
     }
 
     int bfs(){
-        for(int i=1; i<=n; i++) pai[i]={-1, -1};
+        fill(parent.begin(), parent.end(), make_pair(-1,-1));
         pai[s]={0, 0};
 
         queue<pair<int, ll> > fila;
