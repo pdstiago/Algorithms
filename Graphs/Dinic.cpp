@@ -4,10 +4,9 @@ struct Edge{
     Edge(int v, int u, ll cap) : v(v), u(u), cap(cap) {}
 };
 struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
+    int n, m=0, s, t;
     vector<Edge> edges;
     vector<vector<int> > vec;
-    int n, m=0;
-    int s, t;
     vector<int> lv, pos;
     queue<int> fila;
 
