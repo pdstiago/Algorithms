@@ -19,19 +19,21 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
     }
 
     int bfs(){
-        fill(parent.begin(), parent.end(), make_pair(-1,-1));
+        fill(pai.begin(), pai.end(), make_pair(-1,-1));
         pai[s]={0, 0};
 
         queue<pair<int, ll> > fila;
         fila.push({s, INFL});
 
         while(!fila.empty()){
-            auto atual=fila.front();
+            int v=fila.front().f;
+            ll atual=fila.front().s;
             fila.pop();
-            for(pii i:vec[atual.f]){
+
+            for(pii i:vec[v]){
                 if(pai[i.f].f==-1 && cap[i.s]){
-                    pai[i.f]={atual.f, i.s};
-                    ll flow=min(atual.s, cap[i.s]);
+                    pai[i.f]={v, i.s};
+                    ll flow=min(atual, cap[i.s]);
                     if(i.f==t) return flow;
                     fila.push({i.f, flow});
                 }
