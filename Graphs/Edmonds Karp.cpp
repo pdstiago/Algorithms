@@ -1,8 +1,8 @@
-ll bfs(int s, int t){
+int bfs(int s, int t){
     memset(pai, 0, sizeof(pai));
     
     queue<pii> fila;
-    fila.push({s, INFL});
+    fila.push({s, INF});
 
     while(!fila.empty()){
         pii atual=fila.front();
