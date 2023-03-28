@@ -1,5 +1,7 @@
 int bfs(int s, int t){
-    for(int i=1; i<=n; i++) pai[i]={0, 0};
+    for(int i=1; i<=n; i++) pai[i]={-1, -1};
+    
+    pai[s]={0, 0};
     
     queue<pii> fila;
     fila.push({s, INF});
@@ -9,7 +11,7 @@ int bfs(int s, int t){
         fila.pop();
 
         for(pii i:vec[atual.f]){
-            if(!pai[i.f].f && cap[i.s]){
+            if(pai[i.f].f==-1 && cap[i.s]){
                 pai[i.f]={atual.f, i.s};
 
                 ll flow=min(atual.s, cap[i.s]);
