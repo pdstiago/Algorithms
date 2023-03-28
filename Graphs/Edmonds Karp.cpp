@@ -1,5 +1,5 @@
 int bfs(int s, int t){
-    memset(pai, 0, sizeof(pai));
+    for(int i=1; i<=n; i++) pai[i]={0, 0};
     
     queue<pii> fila;
     fila.push({s, INF});
@@ -24,7 +24,7 @@ int bfs(int s, int t){
 }
 ll karp(int s, int t){
     ll flow=0, novo;
-    while(novo=bfs(s, t)){
+    while((novo=bfs(s, t))){
         flow+=novo;
         int u=t;
         while(u!=s){
