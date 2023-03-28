@@ -18,7 +18,7 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
         m+=2;
     }
 
-    int bfs(){
+    ll bfs(){
         fill(pai.begin(), pai.end(), make_pair(-1,-1));
         pai[s]={0, 0};
 
