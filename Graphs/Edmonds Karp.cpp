@@ -1,8 +1,8 @@
 struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
+    int n, m=0, s, t;
     vector<vector<pii> > vec;
     vector<ll> cap;
     vector<pii> pai;
-    int n, m=0, s, t;
 
     Karp(int n, int mf, int s, int t) : n(n), s(s), t(t){
         vec.resize(n+1);
@@ -49,9 +49,8 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
             vector<int> agr;
             while(u!=s){
                 int prev=pai[u].f, edge=pai[u].s;
-                ll agr=atual;
-                if(edge&1) agr*=-1, edge--;
-                cap[edge]-=agr, cap[edge+1]+=agr;
+                cap[edge]-=atual;
+                cap[edge^1]+=atual;
                 u=prev; 
             }
         }
