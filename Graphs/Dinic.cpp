@@ -16,7 +16,7 @@ struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
         pos.resize(n+1);
     }
 
-    void add_edge(int v, int u, ll cap) {
+    void add_edge(int v, int u, ll cap){
         edges.emplace_back(v, u, cap);
         edges.emplace_back(u, v, 0);
         vec[v].pb(m);
