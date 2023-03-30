@@ -1,5 +1,5 @@
 struct Edge{
-    int u, v, cost;
+    int v, u, cost;
     Edge(int v, int u, int cost) : v(v), u(u), cost(cost) {}
 };
 struct Ford{ // Ford ford(n, m); O(VE)
