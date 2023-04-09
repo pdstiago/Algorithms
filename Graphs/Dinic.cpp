@@ -67,6 +67,7 @@ struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
         }
         return flow;
     }
+    
     void recap(){
         for(int i=1; i<=n; i++){
             for(int j:vec[i]){
