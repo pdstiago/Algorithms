@@ -42,19 +42,14 @@ struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
     ll dfs(int v, ll menor) {
         if(!menor) return 0;
         if(v==t) return menor;
-
         for(int& j=pos[v]; j<sz(vec[v]); j++){
             int i=vec[v][j];
             int u=edges[i].u;
-
             if(lv[v]+1!=lv[u] || edges[i].cap-edges[i].flow<1) continue;
-
             ll agr=dfs(u, min(menor, edges[i].cap-edges[i].flow));
             if(!agr) continue;
-
             edges[i].flow+=agr;
             edges[i^1].flow-=agr;
-
             return agr;
         }
         return 0;
@@ -64,16 +59,21 @@ struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
         ll flow=0;
         while(1){
             fill(lv.begin(), lv.end(), -1);
-
             lv[s]=0;
             fila.push(s);
-
             if(!bfs()) break;
-
             fill(pos.begin(), pos.end(), 0);
-
             while(ll atual=dfs(s, INFL)) flow+=atual;
         }
         return flow;
+    }
+    void recap(){
+        for(int i=1; i<=n; i++){
+            for(int j:vec[i]){
+                if(j%2==0 && lv[i]>=0 && lv[edges[j].u]==-1){
+                    resp[adj[i][edges[j].u]]=1;
+                }
+            }
+        }
     }
 };
