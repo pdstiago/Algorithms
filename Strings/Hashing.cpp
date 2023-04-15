@@ -26,6 +26,6 @@ struct Hashing{
     }
 
     ll range(int l, int r){
-        return ((h[r]-h[l]+m)%m*inv_pow[l])%m;
+        return mod(h[r]-h[l-1], m)*inv_pow[l-1]%m;
     }
 };
