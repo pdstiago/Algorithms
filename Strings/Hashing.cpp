@@ -2,7 +2,7 @@ struct Hashing{
     int n;
     int m=1004669333;
     int p=33; //se tiver maiúscula, 53 pode ser uma boa opção
-    ll inv_p=121778101;
+    int inv_p=121778101;
     vector<ll> p_pow, inv_pow, h;
     string s;
 
