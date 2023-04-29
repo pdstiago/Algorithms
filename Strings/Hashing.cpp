@@ -3,7 +3,7 @@ struct Hashing{
     int m=1004669333;
     int p=33; //se tiver maiúscula, 53 pode ser uma boa opção
     int inv_p=121778101;
-    vector<ll> p_pow, inv_pow, h, inv_h;
+    vector<ll> p_pow, inv_pow, h;
     string s;
 
     Hashing(string s) : s(s){
