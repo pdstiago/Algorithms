@@ -1,7 +1,7 @@
 int mod(ll a){
     return (a%MOD + MOD)%MOD;
 }
-ll exp(ll b, ll e){
+ll exp(ll b, ll e){ // O(logE)
     ll res=1;
     while(e){
         if(e&1){
