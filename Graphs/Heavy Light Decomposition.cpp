@@ -75,7 +75,7 @@ struct HLD{
             a=pai[head[a]];
         }
         if(pos[a]>pos[b]) swap(a, b);
-        //if the values in on the edges pos[a]+1
+        //if the values are on the edges pos[a]+1
         ans=min(ans, query(1, 1, n, pos[a], pos[b]));
         return ans;
     }
