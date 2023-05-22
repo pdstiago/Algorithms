@@ -1,3 +1,4 @@
+//acha o maior valor de y para um determinado x, para retas da forma ax + b que estão na estrutura
 struct Line{
     mutable ll k, m, p;
     bool operator<(const Line& o) const {return k<o.k;}
@@ -15,7 +16,8 @@ struct LineContainer : multiset<Line, less<>>{
         else x->p=div(y->m - x->m, x->k - y->k);
         return x->p >= y->p;
     }
-
+    
+    //para achar o mínimo, é preciso fazer insert({-k, -m, 0}), além disso multiplicar por -1 o resultado da query
     void add(ll k, ll m){
         auto z=insert({k, m, 0}), y=z++, x=y;
         while(issect(y, z)) z=erase(z);
