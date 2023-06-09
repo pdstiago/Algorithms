@@ -2,7 +2,6 @@
 using namespace std;
 
 #define MOD 1000000007
-#define mod(x, m) (((x % m) + m) % m)
 #define mxn 100005
 #define mxm 505
 #define f first
