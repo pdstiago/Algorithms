@@ -1,8 +1,7 @@
 void dj(int x){
     memset(dist, INF, sizeof(dist));
     memset(memo, 0, sizeof(memo));
-    priority_queue<pair<int, int>, vector<pair<int, int> >, 
-    greater<pair<int, int> > > fila;
+    priority_queue<pair<int, int>, vector<pair<int, int> >, greater<pair<int, int> > > fila;
     dist[x]=0;
     fila.push({0, x});
     while(!fila.empty()){
