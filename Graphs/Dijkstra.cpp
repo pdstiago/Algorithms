@@ -1,18 +1,19 @@
-void dj(){
+void dj(int x){
     memset(dist, INF, sizeof(dist));
     memset(memo, 0, sizeof(memo));
-    dist[1]=0;
-    priority_queue<pii, vector<pii>, greater<pii> > fila;
-    fila.push({0, 1});
+    priority_queue<pair<int, int>, vector<pair<int, int> >, 
+    greater<pair<int, int> > > fila;
+    dist[x]=0;
+    fila.push({0, x});
     while(!fila.empty()){
-        pii u=fila.top();
+        int u=fila.top().second;
         fila.pop();
-        if(memo[u.s]) continue;
-        memo[u.s]=1;
-        for(pii i:vec[u.s]){
-            if(dist[i.f]>dist[u.s]+i.s){
-                dist[i.f]=dist[u.s]+i.s;
-                fila.push({dist[i.f], i.f});
+        if(memo[u]) continue;
+        memo[u]=1;
+        for(pair<int, int> i:vec[u]){
+            if(dist[i.first]>dist[u]+i.second){
+                dist[i.first]=dist[u]+i.second;
+                fila.push({dist[i.first], i.first});
             }
         }
     }
