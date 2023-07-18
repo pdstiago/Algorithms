@@ -1,3 +1,6 @@
+void init(){
+    memset(anc, -1, sizeof(anc));
+}
 void dfs(int x, int p){
     for(int j=1; j<=18; j++){
         if(anc[x][j-1]!=-1){
