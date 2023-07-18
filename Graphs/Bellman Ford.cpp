@@ -15,22 +15,22 @@ struct Ford{ // Ford ford(n, m); O(VE)
         edges.push_back(v, u, cost);
     }
 
-    ll bellman(){
-        dist[1]=0;
+    ll bellman(int s, int t){
+        dist[s]=0;
         for(int k=1; k<n; k++){
             for(int i=0; i<m; i++){
                 int a=edges[i].v, b=edges[i].u, c=edges[i].cost;
-                if(dist[b]>dist[a]+c){
+                if(dist[a]!=INFL && dist[b]>dist[a]+c){
                     dist[b]=dist[a]+c;
                 }
             }
         }
         for(int i=0; i<m; i++){
             int a=edges[i].v, b=edges[i].u, c=edges[i].cost;
-            if(dist[b]>dist[a]+c){
+            if(dist[a]!=INFL && dist[b]>dist[a]+c){
                 return -1;
             }
         }
-        return dist[n];
+        return dist[t];
     }
 };
