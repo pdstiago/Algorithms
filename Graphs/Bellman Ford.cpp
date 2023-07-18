@@ -12,7 +12,7 @@ struct Ford{ // Ford ford(n, m); O(VE)
     }
 
     void add_edge(int v, int u, int cost){
-        edges.push_back(v, u, cost);
+        edges.emplace_back(v, u, cost);
     }
 
     ll bellman(int s, int t){
