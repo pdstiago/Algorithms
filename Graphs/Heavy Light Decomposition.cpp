@@ -6,13 +6,13 @@ struct HLD{
 
     HLD(int n) : n(n){
         seg.build(n);
-        v.resize(n+1);
         sub.resize(n+1);
         pai.resize(n+1);
         heavy.resize(n+1);
         chain.resize(n+1);
         pos.resize(n+1);
         vec.resize(n+1);
+        v.resize(n+1);
     }
 
     void add_edge(int a, int b){
