@@ -24,12 +24,12 @@ void add_edge(int x, int sx, int y, int sy){
     rvec[x+n*(!sx)].push_back(y+n*sy);
 }
 void build(){
-    //use normal build of kosaraju to find the components, remeber number of nodes is 2*m
+    //use normal build of kosaraju to find the components, remeber number of nodes is 2*n
     
     int can=1;
     for(int i=1; i<=n; i++){
-        if(comp[i]==comp[i+m]) can=0;
-        resp[i]=comp[i]<comp[i+m]?'+':'-';
+        if(comp[i]==comp[i+n]) can=0;
+        resp[i]=comp[i]<comp[i+n]?'+':'-';
     }
     if(can){
         cout << "YES" << endl;
