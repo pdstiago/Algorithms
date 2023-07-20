@@ -17,23 +17,23 @@ void add_edge(int x, int sx, int y, int sy){
     
     sx^=1, sy^=1;
     
-    vec[x+m*sx].push_back(y+m*(!sy));
-    vec[y+m*sy].push_back(x+m*(!sx));
+    vec[x+n*sx].push_back(y+n*(!sy));
+    vec[y+n*sy].push_back(x+n*(!sx));
  
-    rvec[y+m*(!sy)].push_back(x+m*sx);
-    rvec[x+m*(!sx)].push_back(y+m*sy);
+    rvec[y+n*(!sy)].push_back(x+n*sx);
+    rvec[x+n*(!sx)].push_back(y+n*sy);
 }
 void build(){
     //use normal build of kosaraju to find the components, remeber number of nodes is 2*m
     
     int can=1;
-    for(int i=1; i<=m; i++){
+    for(int i=1; i<=n; i++){
         if(comp[i]==comp[i+m]) can=0;
         resp[i]=comp[i]<comp[i+m]?'+':'-';
     }
     if(can){
         cout << "YES" << endl;
-        for(int i=1; i<=m; i++){
+        for(int i=1; i<=n; i++){
             cout << resp[i] << " ";
         }
     }else{
