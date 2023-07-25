@@ -25,11 +25,9 @@ struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
             }
         }
         dist[0]=INF;
-        
         while(!fila.empty()){
             int v=fila.front();
             fila.pop();
-
             if(dist[v]<dist[0]){
                 for(int i:vec[v]){
                     if(dist[pairm[i]]==INF){
@@ -43,20 +41,18 @@ struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
     }
 
     int dfs(int v){
-        if(v){
-            for(int i:vec[v]){
-                if(dist[pairm[i]]==dist[v]+1){
-                    if(dfs(pairm[i])){
-                        pairm[i]=v;
-                        pairn[v]=i;
-                        return 1;
-                    }
+        if(!v) return 1;
+        for(int i:vec[v]){
+            if(dist[pairm[i]]==dist[v]+1){
+                if(dfs(pairm[i])){
+                    pairm[i]=v;
+                    pairn[v]=i;
+                    return 1;
                 }
             }
-            dist[v]=INF;
-            return 0;
         }
-        return 1;
+        dist[v]=INF;
+        return 0;
     }
 
     int max_bip(){
@@ -69,8 +65,8 @@ struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
         return resp;
     }
 
-    vector<pii> pairs(){
-        vector<pii> ans;
+    vector<pair<int, int> > pairs(){
+        vector<pair<int, int> > ans;
         for(int i=1; i<=n; i++){
             if(pairn[i]) ans.pb({i, pairn[i]});
         }
