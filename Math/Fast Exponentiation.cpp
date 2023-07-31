@@ -1,13 +1,10 @@
-int mod(ll a){
-    return (a%MOD + MOD)%MOD;
-}
-ll exp(ll b, ll e){ // O(logE)
-    ll res=1;
+int exp(int b, int e, int m=MOD){ // O(logE)
+    int res=1;
     while(e){
         if(e&1){
-            res=mod(res*b);
+            res=(res*b)%m;
         }
-        b=mod(b*b);
+        b=(b*b)%m;
         e>>=1;
     }
     return res;
