@@ -39,7 +39,7 @@ struct SEG{
 
     int query(int node, int l, int r, int a, int b){
         unlazy(node, l, r);
-        if(a>r || b<l) return 0;
+        if(a>r || b<l) return 0; //remember to change
         if(a<=l && b>=r) return tree[node];
         int mid=(l+r)>>1;
         return join(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
