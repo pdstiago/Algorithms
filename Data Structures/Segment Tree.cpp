@@ -23,6 +23,20 @@ struct SEG{
         }
     }
 
+    void upd(int node, int l, int r, int pos, int val){
+        if(l==r){
+            tree[node]=val;
+            return;
+        }
+        int mid=(l+r)>>1;
+        if(pos<=mid){
+            upd(2*node, l, mid, pos, val);
+        }else{
+            upd(2*node+1, mid+1, r, pos, val);
+        }
+        tree[node]=join(tree[2*node], tree[2*node+1]);
+    }
+
     void upd(int node, int l, int r, int a, int b, int val){
         unlazy(node, l, r);
         if(a>r || b<l) return;
