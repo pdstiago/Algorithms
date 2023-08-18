@@ -1,4 +1,4 @@
-struct SEG{
+struct Seg{
     int n;
     vector<int> tree, lazy;
 
