@@ -6,6 +6,8 @@ struct Line{
 };
 
 struct LineContainer : multiset<Line, less<>>{
+    // for doubles: use inf = 1/.0, div(a, b) = a/b
+
     ll div(ll a, ll b){
         return a/b-((a^b)<0 && a%b);
     }
