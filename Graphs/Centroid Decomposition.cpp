@@ -3,16 +3,11 @@ struct Centroid{
     vector<int> used, pai, sub;
     vector<vector<int > > vec;
 
-    Centroid(int n) : n(n){
-        used.resize(n+1);
-        pai.resize(n+1);
-        sub.resize(n+1);
-        vec.resize(n+1);
-    }
+    Centroid(int n) : n(n), used(n+1), pai(n+1), sub(n+1), vec(n+1) {}
 
     void add_edge(int v, int u){
-        vec[v].pb(u);
-        vec[u].pb(v);
+        vec[v].push_back(u);
+        vec[u].push_back(v);
     }
 
     int dfs_sz(int x, int p=0){
@@ -34,6 +29,9 @@ struct Centroid{
     
     void build(int x=1, int p=0){
         int c=find_c(x, dfs_sz(x));
+
+        //do something
+        
         used[c]=1;
         pai[c]=p;
         for(int i:vec[c]){
