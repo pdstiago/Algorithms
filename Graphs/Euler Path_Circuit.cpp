@@ -1,6 +1,6 @@
 struct Euler{ // Euler euler(n, m, 0); O(V+E)
     int n, m, cont=0, dir;
-    //dir == 0, grafo não direcionado, dir==1, grafo direcionado
+    //dir==0, grafo não direcionado / dir==1, grafo direcionado
     vector<vector<pair<int, int> > > vec;
     vector<int> grau, in, out, id;
 
