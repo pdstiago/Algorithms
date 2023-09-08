@@ -1,21 +1,16 @@
 struct Euler{ // Euler euler(n, m, 0); O(V+E)
     int n, m, cont=0, dir;
-    vector<vector<pii> > vec;
+    //dir == 0, grafo não direcionado, dir==1, grafo direcionado
+    vector<vector<pair<int, int> > > vec;
     vector<int> grau, in, out, id;
 
-    Euler(int n, int m, int dir) : n(n), m(m), dir(dir){
-        vec.resize(n+1);
-        grau.resize(n+1);
-        id.resize(m);
-        in.resize(n+1);
-        out.resize(n+1);
-    }
+    Euler(int n, int m, int dir) : n(n), m(m), dir(dir), vec(n+1), grau(n+1), id(n+1), in(n+1), out(n+1) {}
 
     void add_edge(int v, int u){
-        vec[v].pb({u, cont});
+        vec[v].push_back({u, cont});
         grau[v]++, out[v]++, in[u]++;
         if(!dir){
-            vec[u].pb({v, cont});
+            vec[u].push_back({v, cont});
             grau[u]++;
         }
         cont++;
@@ -62,26 +57,26 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
     vector<int> find_euler(){
         vector<int> fila, ans;
         //check the initial and final vertices
-        fila.pb(1);
+        fila.push_back(1);
         while(!fila.empty()){
             int v=fila.back();
-            while(!vec[v].empty() && id[vec[v].back().s]){
+            while(!vec[v].empty() && id[vec[v].back().second]){
                 grau[v]--;
                 vec[v].pop_back();
             }
             if(!grau[v]){
-                ans.pb(v);
+                ans.push_back(v);
                 fila.pop_back();
                 continue;
             }
-            pii u=vec[v].back();
+            pair<int, int> u=vec[v].back();
             vec[v].pop_back();
             grau[v]--;
-            id[u.s]=1;
-            fila.pb(u.f);
+            id[u.second]=1;
+            fila.push_back(u.first);
         }
-        reverse(all(ans));
-        if(sz(ans)!=m+1) ans.clear();
+        reverse(ans.begin(), ans.end());
+        if((int)ans.size()!=m+1) ans.clear();
         return ans;
     }
 };
