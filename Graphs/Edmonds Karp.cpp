@@ -1,6 +1,6 @@
 struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
     int n, m=0, s, t;
-    vector<vector<pii> > vec;
+    vector<vector<pair<int, int> > > vec;
     vector<ll> cap;
     vector<pair<int, int> > pai;
 
