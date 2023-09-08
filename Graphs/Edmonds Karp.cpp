@@ -2,17 +2,13 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
     int n, m=0, s, t;
     vector<vector<pii> > vec;
     vector<ll> cap;
-    vector<pii> pai;
+    vector<pair<int, int> > pai;
 
-    Karp(int n, int mf, int s, int t) : n(n), s(s), t(t){
-        vec.resize(n+1);
-        pai.resize(n+1);
-        cap.resize(2*mf);
-    }
+    Karp(int n, int m, int s, int t) : n(n), s(s), t(t), vec(n+1), pai(n+1), cap(2*m) {}
 
     void add_edge(int v, int u, ll x){
-        vec[v].pb({u, m});
-        vec[u].pb({v, m+1});
+        vec[v].push_back({u, m});
+        vec[u].push_back({v, m+1});
         cap[m]=x;
         cap[m+1]=0;
         m+=2;
