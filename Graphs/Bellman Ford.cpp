@@ -7,9 +7,7 @@ struct Ford{ // Ford ford(n, m); O(VE)
     vector<Edge> edges;
     vector<ll> dist;
 
-    Ford(int n, int m) : n(n), m(m){
-        dist.resize(n+1, INFL);
-    }
+    Ford(int n, int m) : n(n), m(m), dist(n+1, INFL) {}
 
     void add_edge(int v, int u, int cost){
         edges.emplace_back(v, u, cost);
