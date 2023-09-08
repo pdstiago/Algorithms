@@ -2,18 +2,9 @@ struct HLD{
     int n, cont=0;
     vector<int> sub, pai, heavy, chain, pos, v;
     vector<vector<int> > vec;
-    SEG seg;
+    Seg seg;
 
-    HLD(int n) : n(n){
-        seg.build(n);
-        sub.resize(n+1);
-        pai.resize(n+1);
-        heavy.resize(n+1);
-        chain.resize(n+1);
-        pos.resize(n+1);
-        vec.resize(n+1);
-        v.resize(n+1);
-    }
+    HLD(int n) : n(n), seg(n), sub(n+1), pai(n+1), heavy(n+1), chain(n+1), pos(n+1), vec(n+1), v(n+1) {}
 
     void add_edge(int a, int b){
         vec[a].push_back(b);
@@ -36,7 +27,7 @@ struct HLD{
         chain[x]=atual;
         pos[x]=++cont;
 
-        seg.upd(1, 1, n, pos[x], pos[x], v[x]);
+        seg.upd(1, 1, n, pos[x], v[x]);
 
         if(heavy[x]) hld(heavy[x], atual);
         for(int i:vec[x]){
@@ -93,6 +84,6 @@ struct HLD{
     }
 
     void upd_node(int a, int x){
-        seg.upd(1, 1, n, pos[a], pos[a], x);
+        seg.upd(1, 1, n, pos[a], x);
     }
 };
