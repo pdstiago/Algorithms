@@ -1,9 +1,8 @@
-struct Seg{
+truct Seg{
     int n;
     vector<int> tree, lazy;
 
-    void build(int n_){
-        n = n_;
+    Seg(int n){
         tree.resize(4*(n+1));
         lazy.resize(4*(n+1));
     }
@@ -14,7 +13,7 @@ struct Seg{
 
     void unlazy(int node, int l, int r){
         if(lazy[node]){
-            tree[node]+=(r-l+1)*lazy[node];
+            tree[node]+=(r-l+1)*lazy[node]; //remember to change
             if(l!=r){
                 lazy[2*node]+=lazy[node];
                 lazy[2*node+1]+=lazy[node];
