@@ -31,12 +31,12 @@ void large(int x, int p, bool ok){
         large(big, x, 1);
     }
     //realiza a operação para o vertice atual
-    cont[lv[x]]++;
+    cont[color[x]]++;
     for(int i:vec[x]){
         if(i!=p && i!=big){
             for(int j=tin[i]; j<tout[i]; j++){
                 int u=tour[j];
-                cont[lv[u]]++;
+                cont[color[u]]++;
             }
         }
     }
@@ -48,7 +48,7 @@ void large(int x, int p, bool ok){
     if(!ok){
         for(int i=tin[x]; i<tout[x]; i++){
             int u=tour[i];
-            cont[lv[u]]--;
+            cont[color[u]]--;
         }
     }
 }
