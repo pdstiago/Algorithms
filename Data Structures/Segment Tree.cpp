@@ -1,11 +1,8 @@
-truct Seg{
+struct Seg{
     int n;
     vector<int> tree, lazy;
 
-    Seg(int n){
-        tree.resize(4*(n+1));
-        lazy.resize(4*(n+1));
-    }
+    Seg(int n) : n(n), tree(4*(n+1)), lazy(4*(n+1)) {}
     
     int join(int a, int b){
         return a+b;
