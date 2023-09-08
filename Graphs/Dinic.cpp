@@ -3,24 +3,23 @@ struct Edge{
     ll cap, flow=0;
     Edge(int v, int u, ll cap) : v(v), u(u), cap(cap) {}
 };
-struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
+// O(min(V*max_flow, V²*E))
+// Grafo com capacidades 1: O(min(M*sqrt(M), M*N^(2/3)))
+// Todo vértice tem grau de entrada ou saída 1: O(M*sqrt(N))
+struct Dinic{
     int n, m=0, s, t;
     vector<Edge> edges;
     vector<vector<int> > vec;
     vector<int> lv, pos;
     queue<int> fila;
  
-    Dinic(int n, int s, int t) : n(n), s(s), t(t){
-        vec.resize(n+1);
-        lv.resize(n+1);
-        pos.resize(n+1);
-    }
+    Dinic(int n, int s, int t) : n(n), s(s), t(t), vec(n+1), lv(n+1), pos(n+1) {}
  
     void add_edge(int v, int u, ll cap) {
         edges.emplace_back(v, u, cap);
         edges.emplace_back(u, v, 0);
-        vec[v].pb(m);
-        vec[u].pb(m+1);
+        vec[v].push_back(m);
+        vec[u].push_back(m+1);
         m+=2;
     }
  
@@ -43,7 +42,7 @@ struct Dinic{ //Dinic dinic(n, 1, n); O(V²E)
         if(!menor) return 0;
         if(v==t) return menor;
  
-        for(int& j=pos[v]; j<sz(vec[v]); j++){
+        for(int& j=pos[v]; j<(int)vec[v].size(); j++){
             int i=vec[v][j];
             int u=edges[i].u;
  
