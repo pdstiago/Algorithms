@@ -4,15 +4,10 @@ struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
     vector<int> pairn, pairm, dist;
     queue<int> fila;
 
-    Hopcroft(int n, int m) : n(n), m(m){
-        vec.resize(n+1);
-        dist.resize(n+1);
-        pairn.resize(n+1);
-        pairm.resize(m+1);
-    }
+    Hopcroft(int n, int m) : n(n), m(m), vec(n+1), dist(n+1), pairn(n+1), pairm(n+1) {}
 
     void add_edge(int v, int u) {
-        vec[v].pb(u);
+        vec[v].push_back(u);
     }
 
     int bfs(){
@@ -68,7 +63,7 @@ struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
     vector<pair<int, int> > pairs(){
         vector<pair<int, int> > ans;
         for(int i=1; i<=n; i++){
-            if(pairn[i]) ans.pb({i, pairn[i]});
+            if(pairn[i]) ans.push_back({i, pairn[i]});
         }
         return ans;
     }
