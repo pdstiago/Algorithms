@@ -1,15 +1,9 @@
-struct KOSA{
+struct Kosa{
     int n;
     vector<int> memo, comp, st;
     vector<vector<int> > vec, rvec, scc;
 
-    KOSA(int n) : n(n){
-        memo.resize(n+1);
-        comp.resize(n+1);
-        vec.resize(n+1);
-        rvec.resize(n+1);
-        scc.resize(n+1);
-    }
+    Kosa(int n) : n(n), memo(n+1), comp(n+1), vec(n+1), rvec(n+1), scc(n+1) {}
 
     void add_edge(int a, int b){
         vec[a].push_back(b);
@@ -21,7 +15,7 @@ struct KOSA{
         for(int i:vec[x]){
             if(!memo[i]) dfs(i);
         }
-        st.pb(x);
+        st.push_back(x);
     }
 
     void dfs2(int x, int c){
