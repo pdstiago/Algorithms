@@ -1,15 +1,11 @@
-struct Push_Relabel{ // Push_Relabel pr(n, 1, n); O(VE+V²*sqrt(E)), worst case O(V³)
+struct PR{ //O(VE+V²*sqrt(E)), worst case O(V³)
     int n, s, t;
     vector<int> lv;
     vector<ll> ex;
     vector<vector<ll> > cap, flow;
 
-    Push_Relabel(int n, int s, int t) : n(n), s(s), t(t){
-        cap.resize(n+1, vector<ll>(n+1));
-        flow.resize(n+1, vector<ll>(n+1));
-        ex.resize(n+1);
-        lv.resize(n+1);
-    }
+    PR(int n, int s, int t) : n(n), s(s), t(t), cap(n+1, vector<ll>(n+1), flow(n+1, vector<ll>(n+1),
+    ex(n+1), lv(n+1) {}
 
     void add_edge(int v, int u, ll x){
         cap[v][u]+=x;
@@ -45,7 +41,7 @@ struct Push_Relabel{ // Push_Relabel pr(n, 1, n); O(VE+V²*sqrt(E)), worst case 
                     max_h.clear();
                 }
                 if(max_h.empty() || lv[i]==lv[max_h[0]]){
-                    max_h.pb(i);
+                    max_h.push_back(i);
                 }
             }
         }
@@ -80,7 +76,6 @@ struct Push_Relabel{ // Push_Relabel pr(n, 1, n); O(VE+V²*sqrt(E)), worst case 
         for(int i=1; i<=n; i++){
             total+=flow[i][t];
         }
-
         return total;
     }
 };
