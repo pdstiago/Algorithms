@@ -4,8 +4,9 @@ struct Seg{
 
     Seg(int n) : n(n), tree(4*(n+1)), lazy(4*(n+1)) {}
     
-    int join(int a, int b) return a+b;
-
+    int join(int a, int b){
+        return a+b;
+    }
     void unlazy(int node, int l, int r){
         if(lazy[node]){
             tree[node]+=(r-l+1)*lazy[node]; //remember to change
