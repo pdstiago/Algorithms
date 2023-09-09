@@ -4,7 +4,7 @@ struct PR{ //O(VE+V²*sqrt(E)), worst case O(V³)
     vector<ll> ex;
     vector<vector<ll> > cap, flow;
 
-    PR(int n, int s, int t) : n(n), s(s), t(t), cap(n+1, vector<ll>(n+1), flow(n+1, vector<ll>(n+1),
+    PR(int n, int s, int t) : n(n), s(s), t(t), cap(n+1, vector<ll>(n+1)), flow(n+1, vector<ll>(n+1)),
     ex(n+1), lv(n+1) {}
 
     void add_edge(int v, int u, ll x){
