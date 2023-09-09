@@ -10,7 +10,7 @@ void dfs(int x, int p){
             dfs(i, x);
             low[x]=min(low[x], low[i]);
             if(low[i]>tin[x]){
-                bridges.pb({min(i, x), max(i, x)});
+                bridges.push_back({min(i, x), max(i, x)});
             }
             if(low[i]>=tin[x] && p) artic[x]=1;
             children++;
