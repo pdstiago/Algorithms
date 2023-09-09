@@ -1,10 +1,10 @@
-struct Hopcroft{ //Hopcroft hop(n, m); O(sqrt(V)*E)
+struct Hop{ //O(sqrt(V)*E)
     int n, m;
     vector<vector<int> > vec;
     vector<int> pairn, pairm, dist;
     queue<int> fila;
 
-    Hopcroft(int n, int m) : n(n), m(m), vec(n+1), dist(n+1), pairn(n+1), pairm(n+1) {}
+    Hop(int n, int m) : n(n), m(m), vec(n+1), dist(n+1), pairn(n+1), pairm(n+1) {}
 
     void add_edge(int v, int u) {
         vec[v].push_back(u);
