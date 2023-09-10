@@ -1,3 +1,4 @@
+//< for maximum and > for minimum value
 int ternary(int l, int r){
     while(r-l>=5){    
         int mid=(l+r)>>1;
