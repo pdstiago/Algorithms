@@ -53,4 +53,26 @@ struct Seg{
         int mid=(l+r)>>1;
         return join(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
     }
+
+    int busca(int node, int l, int r, int a, int b, int val){ //primeira posição com valor > que val
+        if(a>r || b<l) return -1;
+        if(l>=a && r<=b){
+            if(tree[node]<=val) return -1;
+            while(l!=r){
+                int mid = (l+r)>>1;
+                if(tree[2*node]>val){
+                    node=2*node;
+                    r=mid;
+                }else{
+                    node=2*node+1;
+                    l=mid+1;
+                }
+            }
+            return l;
+        }
+        int mid=(l+r)>>1;
+        int ans = busca(2*node, l, mid, a, b, val);
+        if(ans!=-1) return ans;
+        return busca(2*node+1, mid+1, r, a, b, val);
+    }
 };
