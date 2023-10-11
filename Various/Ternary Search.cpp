@@ -15,8 +15,8 @@ int ternary(int l, int r){
 }
 
 double ternary(double l, double r){
-    double eps=1e-9;
-    while(r-l>eps){
+    int cont=200;
+    while(cont--){
         double m1=l+(r-l)/3;
         double m2=r-(r-l)/3;
         double f1=f(m1);
