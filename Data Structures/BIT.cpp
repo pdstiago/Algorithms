@@ -8,7 +8,7 @@ int sum(int x){
     return ans;
 }
 
-int busca(int val){
+int busca(int val){ //primeira posição com valor >= a val
     int sum=0, pos=0;
     for(int i=18; i>=0; i--){
         int newpos = pos+(1<<i);
