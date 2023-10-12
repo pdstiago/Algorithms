@@ -1,31 +1,55 @@
-struct Hashing{
-    int n;
-    int m=1e9+7;
-    int p=31; //se tiver maiúscula, 53 pode ser uma boa opção
-    int inv_p=129032259;
-    vector<ll> p_pow, inv_pow, h;
-    string s;
+static int C;
 
-    Hashing(string s) : s(s){
-        n=s.size();
-        p_pow.resize(n+1);
-        inv_pow.resize(n+1);
-        h.resize(n+1);
-    }
-
-    void build(){
-        p_pow[0]=1;
-        inv_pow[0]=1;
-        for(int i=1; i<n; i++){
-            p_pow[i]=(p_pow[i-1]*p)%m;
-            inv_pow[i]=(inv_pow[i-1]*inv_p)%m;
-        }
-        for(int i=1; i<=n; i++){
-            h[i]=(h[i-1]+(s[i-1]-'a'+1)*p_pow[i-1])%m;
-        }
-    }
-
-    int range(int l, int r){ //index em 0
-        return ((h[r+1]-h[l]+m)*inv_pow[l])%m;
-    }
+template<int M, class B> struct A{
+	int x; B b; 
+    A(int x=0) : x(x), b(x) {}
+	A(int x, B b) : x(x), b(b) {}
+	A operator+(A o){int y = x+o.x; return{y - (y>=M)*M, b+o.b};}
+	A operator-(A o){int y = x-o.x; return{y + (y< 0)*M, b-o.b};}
+	A operator*(A o) { return {(int)(1LL*x*o.x % M), b*o.b}; }
+	explicit operator ull() { return x ^ (ull) b << 21; }
+	bool operator==(A o) const { return (ull)*this == (ull)o; }
+	bool operator<(A o) const { return (ull)*this < (ull)o; }
 };
+
+typedef A<1000000007, A<1000000009, unsigned> > H;
+
+struct Hashing{
+	int n;
+    vector<H> ha, pw;
+	Hashing(string& str) : n((int)str.size()), ha(n+1), pw(n+1){
+		pw[0]=1;
+        for(int i=0; i<n; i++){
+            ha[i+1] = ha[i] * C + str[i],
+			pw[i+1] = pw[i] * C;
+        }
+	}
+	H range(int a, int b){ // hash [a, b)
+		return ha[b] - ha[a] * pw[b - a];
+	}
+};
+
+vector<H> getHashes(string& str, int tam){
+	int n = (int)str.size();
+    if(n<tam) return {};
+	H h = 0, pw = 1;
+    for(int i=0; i<tam; i++){
+        h = h * C + str[i], pw = pw * C;
+    }
+	vector<H> ret = {h};
+    for(int i=tam; i<n; i++){
+        ret.push_back(h = h * C + str[i] - pw * str[i-tam]);
+    }
+	return ret;
+}
+
+H hashString(string& str) {H h{}; for(char c:str) h=h*C+c; return h;}
+
+#include <sys/time.h>
+int main() {
+	timeval tp;
+	gettimeofday(&tp, 0);
+	C = (int)tp.tv_usec;
+	assert((ull)(H(1)*2+1-3) == 0);
+	// ...
+}
