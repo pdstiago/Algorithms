@@ -1,7 +1,8 @@
 static int C;
 
 template<int M, class B> struct A{
-    int x; B b; 
+    int x; 
+    B b; 
     A(int x=0) : x(x), b(x) {}
     A(int x, B b) : x(x), b(b) {}
     A operator+(A o){int y = x+o.x; return{y - (y>=M)*M, b+o.b};}
@@ -13,6 +14,9 @@ template<int M, class B> struct A{
 };
 
 typedef A<1000000007, A<1000000009, unsigned> > H;
+//remember to convert H to ull to get hash humber
+//just put (ull) before the variable with type H
+//ull atual = (ull) txt.range(i, i+meio);
 
 struct Hashing{
     int n;
