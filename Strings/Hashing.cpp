@@ -44,3 +44,12 @@ vector<H> getHashes(string& str, int tam){
 }
 
 H hashString(string& str) {H h{}; for(char c:str) h=h*C+c; return h;}
+
+#include <sys/time.h>
+int main(){
+    timeval tp;
+    gettimeofday(&tp, 0);
+    C = (int)tp.tv_usec;
+    assert((ull)(H(1)*2+1-3) == 0);
+    // ...
+}
