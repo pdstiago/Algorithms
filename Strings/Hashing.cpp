@@ -15,41 +15,32 @@ template<int M, class B> struct A{
 typedef A<1000000007, A<1000000009, unsigned> > H;
 
 struct Hashing{
-	int n;
+    int n;
     vector<H> ha, pw;
-	Hashing(string& str) : n((int)str.size()), ha(n+1), pw(n+1){
-		pw[0]=1;
+    Hashing(string& str) : n((int)str.size()), ha(n+1), pw(n+1){
+        pw[0]=1;
         for(int i=0; i<n; i++){
             ha[i+1] = ha[i] * C + str[i],
-			pw[i+1] = pw[i] * C;
+            pw[i+1] = pw[i] * C;
         }
-	}
-	H range(int a, int b){ // hash [a, b)
-		return ha[b] - ha[a] * pw[b - a];
-	}
+    }
+    H range(int a, int b){ // hash [a, b)
+        return ha[b] - ha[a] * pw[b - a];
+    }
 };
 
 vector<H> getHashes(string& str, int tam){
-	int n = (int)str.size();
+    int n = (int)str.size();
     if(n<tam) return {};
-	H h = 0, pw = 1;
+    H h = 0, pw = 1;
     for(int i=0; i<tam; i++){
         h = h * C + str[i], pw = pw * C;
     }
-	vector<H> ret = {h};
+    vector<H> ret = {h};
     for(int i=tam; i<n; i++){
         ret.push_back(h = h * C + str[i] - pw * str[i-tam]);
     }
-	return ret;
+    return ret;
 }
 
 H hashString(string& str) {H h{}; for(char c:str) h=h*C+c; return h;}
-
-#include <sys/time.h>
-int main() {
-	timeval tp;
-	gettimeofday(&tp, 0);
-	C = (int)tp.tv_usec;
-	assert((ull)(H(1)*2+1-3) == 0);
-	// ...
-}
