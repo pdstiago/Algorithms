@@ -109,3 +109,4 @@ void print(node *t){
     cout << t->v << " ";
     print(t->r);
 }
+node *root = nullptr;
