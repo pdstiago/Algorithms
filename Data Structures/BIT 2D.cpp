@@ -16,6 +16,6 @@ int sum(int x, int y){
     return ans;
 }
 
-int query(int a, int b, int c, int d){
-    return sum(c, d)-sum(a-1, d)-sum(c, b-1)+sum(a-1, b-1);
+int query(int x1, int y1, int x2, int y2){
+    return sum(x2, y2)-sum(x1-1, y2)-sum(x2, y1-1)+sum(x1-1, y1-1);
 }
