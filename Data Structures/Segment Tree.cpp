@@ -55,7 +55,7 @@ template <class T> struct Seg{
         return join(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
     }
 
-    int busca(int node, int l, int r, int a, int b, int val){ //primeira posição com valor > que val
+    int upper(int node, int l, int r, int a, int b, int val){
         if(a>r || b<l) return -1;
         if(l>=a && r<=b){
             if(tree[node]<=val) return -1;
@@ -72,9 +72,9 @@ template <class T> struct Seg{
             return l;
         }
         int mid=(l+r)>>1;
-        int ans = busca(2*node, l, mid, a, b, val);
+        int ans = upper(2*node, l, mid, a, b, val);
         if(ans!=-1) return ans;
-        return busca(2*node+1, mid+1, r, a, b, val);
+        return upper(2*node+1, mid+1, r, a, b, val);
     }
 
     void upd(int pos, int val){
@@ -89,7 +89,7 @@ template <class T> struct Seg{
         return query(1, 1, n, l, r);
     }
 
-    int upper(int l, int r, int val){
-        return busca(1, 1, n, l, r, val);
+    int upper(int l, int r, int val){ //primeira posição com valor > que val
+        return upper(1, 1, n, l, r, val);
     }
 };
