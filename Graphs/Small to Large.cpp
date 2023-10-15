@@ -41,8 +41,6 @@ void large(int x, int p, bool ok){
         }
     }
     //cont[v] possui a quantidade de vertices da cor v na subarvore de x
-
-    
     
     // faço o inverso da operação
     if(!ok){
