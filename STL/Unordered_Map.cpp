@@ -28,3 +28,4 @@ struct custom_hash{
         return splitmix64(x+FIXED_RANDOM);
     }
 };
+unordered_map<int, int, custom_hash> mapa;
