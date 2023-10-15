@@ -1,12 +1,13 @@
-struct Seg{
-    int n;
-    vector<int> tree, lazy;
+template <class T> struct Seg{
+    int n, neutral=0;
+    vector<T> tree, lazy;
 
     Seg(int n) : n(n), tree(4*(n+1)), lazy(4*(n+1)) {}
     
-    int join(int a, int b){
+    T join(T a, T b){
         return a+b;
     }
+
     void unlazy(int node, int l, int r){
         if(lazy[node]){
             tree[node]+=(r-l+1)*lazy[node]; //remember to change
@@ -46,9 +47,9 @@ struct Seg{
         tree[node]=join(tree[2*node], tree[2*node+1]);
     }
 
-    int query(int node, int l, int r, int a, int b){
+    T query(int node, int l, int r, int a, int b){
         unlazy(node, l, r);
-        if(a>r || b<l) return 0; //remember to change
+        if(a>r || b<l) return neutral; //remember to change
         if(a<=l && b>=r) return tree[node];
         int mid=(l+r)>>1;
         return join(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
@@ -74,5 +75,21 @@ struct Seg{
         int ans = busca(2*node, l, mid, a, b, val);
         if(ans!=-1) return ans;
         return busca(2*node+1, mid+1, r, a, b, val);
+    }
+
+    void upd(int pos, int val){
+        upd(1, 1, n, pos, val);
+    }
+
+    void upd(int l, int r, int val){
+        upd(1, 1, n, l, r, val);
+    }
+
+    T query(int l, int r){
+        return query(1, 1, n, l, r);
+    }
+
+    int upper(int l, int r, int val){
+        return busca(1, 1, n, l, r, val);
     }
 };
