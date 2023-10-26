@@ -8,7 +8,7 @@ void build(){ //0-indexed
     }
 }
 
-int query(int l, int r){
+int query(int l, int r){ // [l, r)
     int k = __lg(r-l);
     return min(tab[l][k], tab[r-(1<<k)][k]);
 }
