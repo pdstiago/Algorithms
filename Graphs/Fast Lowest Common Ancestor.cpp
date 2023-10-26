@@ -1,4 +1,4 @@
-int tempo[mxn], lv[mxn];
+int t, tempo[mxn], lv[mxn];
 vector<int> vec[mxn], path, walk;
 
 //sparse table of min on walk, with n as n-1
