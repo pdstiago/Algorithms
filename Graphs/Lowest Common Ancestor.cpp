@@ -1,3 +1,5 @@
+int lv[mxn], anc[mxn][20];
+
 void init(){
     memset(anc, -1, sizeof(anc));
 }
@@ -27,6 +29,9 @@ int lca(int a, int b){
             a=anc[a][i], b=anc[b][i];
         }
     }
-    // dist = lv[a]+lv[b]-2*lv[lca];
     return anc[a][0];
+}
+
+int dist(int a, int b){
+    return lv[a]+lv[b]-2*lv[lca(a, b)];
 }
