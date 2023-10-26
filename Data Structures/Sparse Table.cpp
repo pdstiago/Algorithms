@@ -8,15 +8,15 @@ void build(){ //0-indexed
     }
 }
 
-int query(int l, int r){ // [l, r)
+int query(int l, int r){ //[l, r)
     int k = __lg(r-l);
     return min(tab[l][k], tab[r-(1<<k)][k]);
 }
 
-int query(int l, int r){
+int query(int l, int r){ //[l, r)
     int ans=0;
     for(int i=18; i>=0; i--){
-        if(l + (1<<i) - 1 <= r){
+        if(l + (1<<i) <= r){
             ans+=tab[l][i];
             l+=(1<<i);
         }
