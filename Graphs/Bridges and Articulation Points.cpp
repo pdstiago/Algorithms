@@ -1,3 +1,6 @@
+int memo[mxn], tin[mxn], low[mxn], artic[mxn], cont;
+vector<int> bridges;
+
 void dfs(int x, int p){
     memo[x]=1;
     tin[x]=low[x]=++cont;
