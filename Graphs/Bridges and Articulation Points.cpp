@@ -22,7 +22,7 @@ void dfs(int x, int p){
     if(!p && children>1) artic[x]=1;
 }
 
-void find_bridges_and_points(){
+void build(){
     cont=0;
     bridges.clear();
     for(int i=1; i<=n; i++){
