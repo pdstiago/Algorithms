@@ -15,4 +15,5 @@ vector<int> build(string &s){ // O(N)
             l=i, r=i+z[i]-1;
         }
     }
+    return z;
 }
