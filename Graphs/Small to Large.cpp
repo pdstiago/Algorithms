@@ -1,4 +1,4 @@
-int sub[mxn], tour[mxn], tin[mxn], tout[mxn], freq[mxn], timer;
+int timer, maior, sub[mxn], tour[mxn], tin[mxn], tout[mxn], freq[mxn];
 
 // dfs(1, 0) / large(1, 0, 1)
 
@@ -32,15 +32,20 @@ void large(int x, int p, bool ok){
     }
     //realiza a operação para o vertice atual
     freq[color[x]]++;
+    maior=max(maior, freq[color[x]);
     for(int i:vec[x]){
         if(i!=p && i!=big){
             for(int j=tin[i]; j<tout[i]; j++){
                 int u=tour[j];
                 freq[color[u]]++;
+                maior=max(maior, freq[color[u]);
             }
         }
     }
-    //freq[v] possui a quantidade de vertices da cor v na subárvore de x
+    //freq[c] possui a quantidade de vertices da cor c na subárvore de x
+    //maior equivale a maior frequência de uma cor na subárvore de x
+
+    
     
     // faço o inverso da operação
     if(!ok){
@@ -48,5 +53,6 @@ void large(int x, int p, bool ok){
             int u=tour[i];
             freq[color[u]]--;
         }
+        maior=0;
     }
 }
