@@ -1,5 +1,7 @@
-//use kosaraju struct
-// i for '+' / i+m for '-'
+// use kosaraju struct
+// i for '+' / i+n for '-'
+
+// change the add_edge function at the kosaraju struct to this one
 void add_edge(int x, int sx, int y, int sy){
     // int a, b, c1, c2;
     // char sa, sb;
