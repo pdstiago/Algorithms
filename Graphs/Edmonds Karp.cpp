@@ -26,7 +26,7 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
             ll atual=fila.front().s;
             fila.pop();
 
-            for(pii i:vec[v]){
+            for(pair<int, int> i:vec[v]){
                 if(pai[i.f].f==-1 && cap[i.s]){
                     pai[i.f]={v, i.s};
                     ll flow=min(atual, cap[i.s]);

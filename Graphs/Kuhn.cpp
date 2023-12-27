@@ -1,4 +1,4 @@
-int memo[mxn], par[mxn];
+int memo[mxn], par[mxn], temp[mxn];
 
 bool dfs(int x){
     if(memo[x]) return 0;
