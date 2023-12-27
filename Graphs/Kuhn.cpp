@@ -1,11 +1,11 @@
-int memo[mxn], par[mxn], temp[mxn];
+int memo[mxn], pai[mxn], filho[mxn], temp[mxn];
 
 bool dfs(int x){
     if(memo[x]) return 0;
     memo[x]=1;
     for(int i:vec[x]){
-        if(!par[i] || dfs(par[i])){
-            par[i]=x;
+        if(!pai[i] || dfs(pai[i])){
+            pai[i]=x, filho[x]=i;
             return 1;
         }
     }
@@ -15,8 +15,8 @@ void kuhn(){
     int resp=0;
     for(int i=1; i<=n; i++){
         for(int j:vec[i]){
-            if(!par[j]){
-                par[j]=i;
+            if(!pai[j]){
+                pai[j]=i, filho[i]=j;
                 temp[i]=1;
                 resp++;
                 break;
@@ -29,9 +29,9 @@ void kuhn(){
         if(dfs(i)) resp++;
     }
     cout << resp << endl;
-    for(int i=1; i<=m; i++){
-        if(par[i]){
-            cout << par[i] << " " << i << endl;
+    for(int i=1; i<=n; i++){
+        if(filho[i]){
+            cout << i << " " << filho[i] << endl;
         }
     }
 }
