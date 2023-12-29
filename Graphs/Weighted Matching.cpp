@@ -1,5 +1,6 @@
-// Para matching mínimo, multiplicar os pesos por -1
-pair<int, vector<int> > hung(const vector<vector<int> > &a){
+// para matching máximo, multiplicar os pesos por -1
+// o valor na posição i do vector retornado indica a coluna do elemento da linha i que foi escolhido
+pair<int, vector<int> > hung(vector<vector<int> > &a){
     int n=(int)a.size()+1, m=(int)a[0].size()+1;
 
     vector<int> u(n), v(m), p(m), ans(n-1);
