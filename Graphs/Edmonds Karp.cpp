@@ -54,4 +54,26 @@ struct Karp{ // Karp karp(n, m, 1, n); O(VE²)
         }
         return flow;
     }
+
+    void recap(int paths){
+        while(paths--){
+            vector<int> atual;
+            int x=s;
+            while(x!=t){
+                atual.pb(x);
+                for(pair<int, int> i:vec[x]){
+                    if(i.s%2==0 && !cap[i.s]){
+                        x=i.f, cap[i.s]=1;
+                        break;
+                    }
+                }
+            }
+            atual.pb(t);
+            cout << (int)atual.size() << endl;
+            for(int i:atual){
+                cout << i << ' ';
+            }
+            cout << endl;
+        }
+    }
 };
