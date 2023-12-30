@@ -21,7 +21,7 @@ void add_edge(int x, int sx, int y, int sy){
     
     vec[x+n*sx].push_back(y+n*(!sy));
     vec[y+n*sy].push_back(x+n*(!sx));
- 
+
     rvec[y+n*(!sy)].push_back(x+n*sx);
     rvec[x+n*(!sx)].push_back(y+n*sy);
 }
