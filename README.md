@@ -1,2 +1,2 @@
-# Sistema-de-Recomendacao-de-Animes
-Library of Algorithms used for ICPC competitions
+# Algorithms
+Library of Algorithms used for ICPC competitions.
