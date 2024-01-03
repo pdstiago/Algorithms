@@ -1,3 +1,5 @@
+int pai[mxn], peso[mxn];
+
 int ff(int x){
     if(pai[x]==x) return x;
     return pai[x]=ff(pai[x]);
