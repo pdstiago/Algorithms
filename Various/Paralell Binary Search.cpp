@@ -20,13 +20,13 @@ void bb(){
             //do the current update
             while(!meio[i].empty()){
                 ok=1;
-                int atual = meio[i].back();
+                int k = meio[i].back();
                 meio[i].pop_back();
                 if(/*check condition*/){
-                    resp[atual]=i;
-                    r[atual]=i-1;
+                    resp[k]=i;
+                    r[k]=i-1;
                 }else{
-                    l[atual]=i+1;
+                    l[k]=i+1;
                 }
             }
         }
