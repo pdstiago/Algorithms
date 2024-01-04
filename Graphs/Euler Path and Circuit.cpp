@@ -4,7 +4,7 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
     vector<vector<pair<int, int> > > vec;
     vector<int> grau, in, out, id;
 
-    Euler(int n, int m, int dir) : n(n), m(m), dir(dir), vec(n+1), grau(n+1), id(n+1), in(n+1), out(n+1) {}
+    Euler(int n, int m, int dir) : n(n), m(m), dir(dir), vec(n+1), grau(n+1), id(m), in(n+1), out(n+1) {}
 
     void add_edge(int v, int u){
         vec[v].push_back({u, cont});
@@ -56,8 +56,7 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
 
     vector<int> find_euler(){
         vector<int> fila, ans;
-        //check the initial and final vertices
-        fila.push_back(1);
+        fila.push_back(1); //check initial vertice
         while(!fila.empty()){
             int v=fila.back();
             while(!vec[v].empty() && id[vec[v].back().second]){
@@ -76,7 +75,11 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
             fila.push_back(u.first);
         }
         reverse(ans.begin(), ans.end());
+
+        //if empty vector is returned is impossible
         if((int)ans.size()!=m+1) ans.clear();
+        if(ans[m]!=1) ans.clear() //check final vertice
+
         return ans;
     }
 };
