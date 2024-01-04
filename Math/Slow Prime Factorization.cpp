@@ -1,4 +1,4 @@
-vector<int> fact(int x){ //O(sqrt(N))
+vector<int> fact(int x){ // O(sqrt(N))
     vector<int> factors;
 
     if(x%2==0) factors.pb(2);
