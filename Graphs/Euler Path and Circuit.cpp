@@ -1,4 +1,4 @@
-struct Euler{ // Euler euler(n, m, 0); O(V+E)
+struct Euler{ // O(V+E)
     int n, m, cont=0, dir;
     //dir==0, grafo não direcionado / dir==1, grafo direcionado
     vector<vector<pair<int, int> > > vec;
@@ -15,7 +15,6 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
         }
         cont++;
     }
-
     int check_circuit(){
         if(!dir){
             for(int i=1; i<=n; i++){
@@ -28,7 +27,6 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
         }
         return 1;
     }
-
     int check_path(){
         if(!dir){
             int impar=0;
@@ -53,7 +51,6 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
         }
         return 1;
     }
-
     vector<int> find_euler(){
         vector<int> fila, ans;
         fila.push_back(1); //check initial vertice
@@ -78,7 +75,7 @@ struct Euler{ // Euler euler(n, m, 0); O(V+E)
 
         //if empty vector is returned is impossible
         if((int)ans.size()!=m+1) ans.clear();
-        if(ans[m]!=1) ans.clear() //check final vertice
+        if(ans[m]!=1) ans.clear(); //check final vertice
 
         return ans;
     }
