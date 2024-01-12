@@ -1,5 +1,6 @@
 template <class T> struct Seg{
-    int n, neutral=0;
+    int n;
+    T neutral=0; //remember to change
     vector<T> tree, lazy;
 
     Seg(int n) : n(n), tree(4*(n+1)), lazy(4*(n+1)) {}
@@ -19,7 +20,7 @@ template <class T> struct Seg{
         }
     }
 
-    void upd(int node, int l, int r, int pos, int val){
+    void upd(int node, int l, int r, int pos, T val){
         if(l==r){
             tree[node]=val;
             return;
@@ -33,7 +34,7 @@ template <class T> struct Seg{
         tree[node]=join(tree[2*node], tree[2*node+1]);
     }
 
-    void upd(int node, int l, int r, int a, int b, int val){
+    void upd(int node, int l, int r, int a, int b, T val){
         unlazy(node, l, r);
         if(a>r || b<l) return;
         if(l>=a && r<=b){
@@ -55,7 +56,7 @@ template <class T> struct Seg{
         return join(query(2*node, l, mid, a, b), query(2*node+1, mid+1, r, a, b));
     }
 
-    int upper(int node, int l, int r, int a, int b, int val){
+    int upper(int node, int l, int r, int a, int b, T val){
         if(a>r || b<l) return -1;
         if(l>=a && r<=b){
             if(tree[node]<=val) return -1;
@@ -77,11 +78,11 @@ template <class T> struct Seg{
         return upper(2*node+1, mid+1, r, a, b, val);
     }
 
-    void upd(int pos, int val){
+    void upd(int pos, T val){
         upd(1, 1, n, pos, val);
     }
 
-    void upd(int l, int r, int val){
+    void upd(int l, int r, T val){
         upd(1, 1, n, l, r, val);
     }
 
@@ -89,7 +90,7 @@ template <class T> struct Seg{
         return query(1, 1, n, l, r);
     }
 
-    int upper(int l, int r, int val){ //primeira posição com valor > que val
+    int upper(int l, int r, T val){ //primeira posição com valor > que val
         return upper(1, 1, n, l, r, val);
     }
 };
