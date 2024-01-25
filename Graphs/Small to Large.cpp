@@ -8,7 +8,6 @@ void dfs(int x, int p){
     tin[x]=timer++;
     for(int i:vec[x]){
         if(i==p) continue;
-        lv[i]=lv[x]+1;
         dfs(i, x);
         sub[x]+=sub[i];
     }
