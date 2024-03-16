@@ -1,3 +1,5 @@
+//1 - indexed
+vector<int> vec[mxn];
 int memo[mxn], pai[mxn], filho[mxn], temp[mxn];
 
 bool dfs(int x){
