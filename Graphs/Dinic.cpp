@@ -75,11 +75,11 @@ struct Dinic{
         }
         return flow;
     }
-    void recap(){
+    vector<pair<int, int> > recap(){
+        vector<pair<int, int> > resp;
         for(int i=0; i<(int)edges.size(); i+=2){
-            if(lv[edges[i].v]>=0 && lv[edges[i].u]==-1){
-                cout << edges[i].v << " " << edges[i].u << endl;
-            }
+            if(lv[edges[i].v]>=0 && lv[edges[i].u]==-1) resp.push_back({edges[i].v, edges[i].u});
         }
+        return resp;
     }
 };
