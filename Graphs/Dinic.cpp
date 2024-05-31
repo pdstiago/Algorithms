@@ -7,13 +7,13 @@ struct Edge{
 // Grafo com capacidades 1: O(min(M*sqrt(M), M*N^(2/3)))
 // Todo vértice tem grau de entrada ou saída 1: O(M*sqrt(N))
 struct Dinic{
-    int n, m=0, s, t;
+    int n, m=0;
     vector<Edge> edges;
     vector<vector<int> > vec;
     vector<int> lv, pos;
     queue<int> fila;
  
-    Dinic(int n, int s, int t) : n(n), s(s), t(t), vec(n+1), lv(n+1), pos(n+1) {}
+    Dinic(int n) : n(n), vec(n+1), lv(n+1), pos(n+1) {}
  
     void add_edge(int v, int u, ll cap) {
         edges.emplace_back(v, u, cap);
@@ -23,7 +23,7 @@ struct Dinic{
         m+=2;
     }
  
-    int bfs(){
+    int bfs(int t){
         while(!fila.empty()){
             int v=fila.front();
             fila.pop();
@@ -38,7 +38,7 @@ struct Dinic{
         return lv[t]!=-1;
     }
  
-    ll dfs(int v, ll menor) {
+    ll dfs(int v, int t, ll menor) {
         if(!menor) return 0;
         if(v==t) return menor;
  
@@ -48,7 +48,7 @@ struct Dinic{
  
             if(lv[v]+1!=lv[u] || edges[i].cap-edges[i].flow<1) continue;
  
-            ll agr=dfs(u, min(menor, edges[i].cap-edges[i].flow));
+            ll agr=dfs(u, t, min(menor, edges[i].cap-edges[i].flow));
             if(!agr) continue;
  
             edges[i].flow+=agr;
@@ -59,7 +59,7 @@ struct Dinic{
         return 0;
     }
  
-    ll max_flow(){
+    ll max_flow(int s, int t){
         ll flow=0;
         while(1){
             fill(lv.begin(), lv.end(), -1);
@@ -67,11 +67,11 @@ struct Dinic{
             lv[s]=0;
             fila.push(s);
  
-            if(!bfs()) break;
+            if(!bfs(t)) break;
  
             fill(pos.begin(), pos.end(), 0);
  
-            while(ll atual=dfs(s, INFL)) flow+=atual;
+            while(ll atual=dfs(s, t, INFL)) flow+=atual;
         }
         return flow;
     }
