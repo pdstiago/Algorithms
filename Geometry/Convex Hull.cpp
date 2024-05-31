@@ -21,4 +21,5 @@ vector<P> ch(vector<P> &v){
     cv = up;
     for(P i:lw) cv.push_back(i);
     return cv;
+    //carefull with duplicates
 }
