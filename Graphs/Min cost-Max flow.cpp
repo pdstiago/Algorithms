@@ -5,20 +5,18 @@ struct min_cost{
     vector<ll> capa, cost, pot, dist, flows, slopes;
     vector<bool> vis;
 
-    min_cost(int n, int s, int t) : n(n), s(s), t(t), ptr(n+1, -1), dist(n+1), vis(n+1), pari(n+1) {}
+    min_cost(int n, int s, int t) : n(n), s(s), t(t), ptr(n, -1), dist(n), vis(n), pari(n) {}
 
     void add_edge(int u, int v, ll w, ll c){
         nxt.push_back(ptr[u]); zu.push_back(v); capa.push_back(w); cost.push_back(c); ptr[u] = m++;
         nxt.push_back(ptr[v]); zu.push_back(u); capa.push_back(0); cost.push_back(-c); ptr[v] = m++;
     }
-
+    // You can pass t=-1 to find a shortest path to each vertex
     void shortest(){
         using E = pair<ll, int>;
         priority_queue<E, vector<E>, greater<E> > fila;
 
-        for(int i=1; i<=n; i++){
-            dist[i]=INFL, vis[i]=false;
-        }
+        for(int i=0; i<n; i++) dist[i]=INFL, vis[i]=false;
 
         for(fila.emplace(dist[s]=0, s); !fila.empty();){
             ll c=fila.top().first;
@@ -44,7 +42,7 @@ struct min_cost{
     }
 
     pair<ll, ll> run(ll limFlow=INFL){
-        pot.assign(n+1, 0);
+        pot.assign(n, 0);
         flows={0};
         slopes.clear();
 
@@ -67,7 +65,7 @@ struct min_cost{
             ll f=limFlow-flow;
             if(!vis[t]) break;
 
-            for(int i=1; i<=n; i++) pot[i]+=min(dist[i], dist[t]);
+            for(int i=0; i<n; i++) pot[i]+=min(dist[i], dist[t]);
 
             for(int v=t; v!=s;){ 
                 int i=pari[v];
@@ -84,5 +82,13 @@ struct min_cost{
             flows.push_back(flow), slopes.push_back(pot[t]-pot[s]);
         }
         return make_pair(flow, tot_cost);
+    }
+
+    vector<pair<int, int> > recap(){
+        vector<pair<int, int> > resp;
+        for(int i=0; i<m; i++){
+            if(i%2==0 && !capa[i]) resp.push_back({zu[i^1], zu[i]});
+        }
+        return resp;
     }
 };
