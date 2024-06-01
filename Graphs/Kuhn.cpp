@@ -13,7 +13,7 @@ bool dfs(int x){
     }
     return 0;
 }
-void kuhn(){
+pair<int, vector<pair<int, int> > > kuhn(){
     int resp=0;
     for(int i=1; i<=n; i++){
         for(int j:vec[i]){
@@ -30,10 +30,11 @@ void kuhn(){
         memset(memo, 0, sizeof(memo));
         if(dfs(i)) resp++;
     }
-    cout << resp << endl;
+    vector<pair<int, int> > ans;
     for(int i=1; i<=n; i++){
         if(filho[i]){
-            cout << i << " " << filho[i] << endl;
+            ans.push_back({i, filho[i]});
         }
     }
+    return {resp, ans};
 }
