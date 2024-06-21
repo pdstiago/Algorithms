@@ -1,7 +1,9 @@
-int base[mxn];
+// max xor subset
+
+int base[32];
 
 void insert(int mask){
-    for(int i=0; i<20; i++){
+    for(int i=20; i>=0; i--){
         if(mask & (1<<i)){
             if(!base[i]){
                 base[i] = mask;
@@ -12,7 +14,7 @@ void insert(int mask){
     }
 }
 
-void query(){
+int query(){
     int ans = 0;
 
     for(int i=20; i>=0; i--){
