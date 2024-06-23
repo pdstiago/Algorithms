@@ -2,19 +2,23 @@
 // para matching máximo, multiplicar os pesos por -1
 // o valor na posição i do vector retornado indica a coluna do elemento da linha i que foi escolhido
 pair<int, vector<int> > hung(vector<vector<int> > &a){
+    // if ll, change function parameter and first return variable
     int n=(int)a.size()+1, m=(int)a[0].size()+1;
 
-    vector<int> u(n), v(m), p(m), ans(n-1);
+    vector<int> p(m), ans(n-1);
+    vector<int> u(n), v(m); //can be ll
 
     for(int i=1; i<n; i++){
         p[0]=i;
         int j0=0;
-        vector<int> dist(m, INF), pre(m, -1);
+        vector<int> dist(m, INF); //can be ll
+        vector<int> pre(m, -1);
         vector<bool> done(m+1);
 
         do{ 
             done[j0]=true;
-            int i0=p[j0], j1, delta=INF;
+            int i0=p[j0], j1;
+            int delta=INF; //can be ll
 
             for(int j=1; j<m; j++){
                 if(!done[j]){
