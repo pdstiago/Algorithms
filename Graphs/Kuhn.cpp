@@ -18,9 +18,7 @@ pair<int, vector<pair<int, int> > > kuhn(){
     for(int i=1; i<=n; i++){
         for(int j:vec[i]){
             if(!pai[j]){
-                pai[j]=i, filho[i]=j;
-                temp[i]=1;
-                resp++;
+                pai[j]=i, filho[i]=j, temp[i]=1, resp++;
                 break;
             }
         }
@@ -32,9 +30,7 @@ pair<int, vector<pair<int, int> > > kuhn(){
     }
     vector<pair<int, int> > ans;
     for(int i=1; i<=n; i++){
-        if(filho[i]){
-            ans.push_back({i, filho[i]});
-        }
+        if(filho[i]) ans.push_back({i, filho[i]});
     }
     return {resp, ans};
 }
