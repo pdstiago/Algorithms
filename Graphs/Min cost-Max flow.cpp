@@ -1,4 +1,4 @@
-struct min_cost{
+struct min_cost{ // O(F*(V+E)logV), F being the amount of flow
     int n, m=0;
     ll eps=1e-10;
     vector<int> ptr, nxt, zu, pari;
