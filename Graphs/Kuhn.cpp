@@ -1,5 +1,5 @@
 // O(N*M)
-//1 - indexed
+// 1 - indexed
 vector<int> vec[mxn];
 int memo[mxn], pai[mxn], filho[mxn], temp[mxn];
 
