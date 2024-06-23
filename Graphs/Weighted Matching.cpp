@@ -1,3 +1,4 @@
+// O(N^2 * M)
 // para matching máximo, multiplicar os pesos por -1
 // o valor na posição i do vector retornado indica a coluna do elemento da linha i que foi escolhido
 pair<int, vector<int> > hung(vector<vector<int> > &a){
