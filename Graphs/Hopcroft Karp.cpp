@@ -1,4 +1,4 @@
-struct Hop{ //O(sqrt(V)*E)
+struct Hop{ // O(sqrt(V)*E), V number of vertices and E number of edges
     int n, m;
     vector<vector<int> > vec;
     vector<int> pairn, pairm, dist;
@@ -12,12 +12,8 @@ struct Hop{ //O(sqrt(V)*E)
 
     int bfs(){
         for(int i=1; i<=n; i++){
-            if(!pairn[i]){
-                dist[i]=0;
-                fila.push(i);
-            }else{
-                dist[i]=INF;
-            }
+            if(!pairn[i]) dist[i]=0, fila.push(i);
+            else dist[i]=INF;
         }
         dist[0]=INF;
         while(!fila.empty()){
@@ -25,10 +21,7 @@ struct Hop{ //O(sqrt(V)*E)
             fila.pop();
             if(dist[v]<dist[0]){
                 for(int i:vec[v]){
-                    if(dist[pairm[i]]==INF){
-                        dist[pairm[i]]=dist[v]+1;
-                        fila.push(pairm[i]);
-                    }
+                    if(dist[pairm[i]]==INF) dist[pairm[i]]=dist[v]+1, fila.push(pairm[i]);
                 }
             }
         }
@@ -40,8 +33,7 @@ struct Hop{ //O(sqrt(V)*E)
         for(int i:vec[v]){
             if(dist[pairm[i]]==dist[v]+1){
                 if(dfs(pairm[i])){
-                    pairm[i]=v;
-                    pairn[v]=i;
+                    pairm[i]=v, pairn[v]=i;
                     return 1;
                 }
             }
