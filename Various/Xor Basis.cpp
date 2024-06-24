@@ -1,7 +1,5 @@
-// max xor subset
-
+// Can find max XOR subset
 int base[32];
-
 void insert(int mask){
     for(int i=20; i>=0; i--){
         if(mask & (1<<i)){
@@ -16,7 +14,6 @@ void insert(int mask){
 
 int query(){
     int ans = 0;
-
     for(int i=20; i>=0; i--){
         if(!base[i]) continue;
 
@@ -24,6 +21,5 @@ int query(){
 
         ans^=base[i];
     }
-
     return ans;
 }
