@@ -1,8 +1,9 @@
-struct HLD{
+template <class T> struct HLD{
     int n, cont=0;
-    vector<int> sub, pai, heavy, chain, pos, v;
+    vector<int> sub, pai, heavy, chain, pos;
+    vector<T> v;
     vector<vector<int> > vec;
-    Seg seg;
+    Seg<T> seg;
 
     HLD(int n) : n(n), seg(n), sub(n+1), pai(n+1), heavy(n+1), chain(n+1), pos(n+1), vec(n+1), v(n+1) {}
 
@@ -27,7 +28,7 @@ struct HLD{
         chain[x]=atual;
         pos[x]=++cont;
 
-        seg.upd(1, 1, n, pos[x], v[x]);
+        seg.upd(pos[x], v[x]);
 
         if(heavy[x]) hld(heavy[x], atual);
         for(int i:vec[x]){
@@ -47,13 +48,13 @@ struct HLD{
         while(chain[a]!=chain[b]){
             if(pos[chain[a]]<pos[chain[b]]) swap(a, b);
 
-            ans=seg.join(ans, seg.query(1, 1, n, pos[chain[a]], pos[a]));
+            ans=seg.join(ans, seg.query(pos[chain[a]], pos[a]));
             a=pai[chain[a]];
         }
         if(pos[a]>pos[b]) swap(a, b);
 
         //if the values are on the edges pos[a]+1
-        ans=seg.join(ans, seg.query(1, 1, n, pos[a], pos[b]));
+        ans=seg.join(ans, seg.query(pos[a], pos[b]));
         return ans;
     }
 
@@ -61,29 +62,29 @@ struct HLD{
         while(chain[a]!=chain[b]){
             if(pos[chain[a]]<pos[chain[b]]) swap(a, b);
 
-            seg.upd(1, 1, n, pos[chain[a]], pos[a], x);
+            seg.upd(pos[chain[a]], pos[a], x);
 
             a=pai[chain[a]];
         }
         if(pos[a]>pos[b]) swap(a, b);
 
         //if the values are on the edges pos[a]+1
-        seg.upd(1, 1, n, pos[a], pos[b], x);
+        seg.upd(pos[a], pos[b], x);
     }
 
     int query_sub(int a){
-        return seg.query(1, 1, n, pos[a], pos[a]+sub[a]-1);
+        return seg.query(pos[a], pos[a]+sub[a]-1);
     }
 
     void upd_sub(int a, int x){
-        seg.upd(1, 1, n, pos[a], pos[a]+sub[a]-1, x);
+        seg.upd(pos[a], pos[a]+sub[a]-1, x);
     }
 
     int query_node(int a){
-        return seg.query(1, 1, n, pos[a], pos[a]);
+        return seg.query(pos[a], pos[a]);
     }
 
     void upd_node(int a, int x){
-        seg.upd(1, 1, n, pos[a], x);
+        seg.upd(pos[a], x);
     }
 };

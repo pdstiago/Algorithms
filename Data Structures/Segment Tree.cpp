@@ -3,6 +3,8 @@ template <class T> struct Seg{
     T neutral=0; //remember to change
     vector<T> tree, lazy;
 
+    Seg() {}
+
     Seg(int n) : n(n), tree(4*n), lazy(4*n) {}
     
     T join(T a, T b){

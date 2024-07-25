@@ -6,6 +6,8 @@ template <class T> struct RMQ{ // 0-indexed
         return min(a, b);
     }
 
+    RMQ() {}
+
     RMQ(vector<T> &v){
         int n = (int)v.size();
         lg = __lg(n)+1;
