@@ -26,6 +26,7 @@ struct SA{
 
 			rank = nrank;
 			rank_subs.push_back(rank);
+			//if(rank[sa[n-1]]==n-1) break;
 		}
 		s.pop_back();
 
