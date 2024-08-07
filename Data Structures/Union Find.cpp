@@ -13,7 +13,7 @@ void uu(int x, int y){
     peso[x]+=peso[y];
 }
 
-void init(){
+void build(){
     for(int i=1; i<=n; i++){
         pai[i]=i;
         peso[i]=1;
