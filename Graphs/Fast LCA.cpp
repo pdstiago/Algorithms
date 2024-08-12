@@ -17,7 +17,7 @@ void dfs(int x, int p){
 int lca(int a, int b){
     if(a==b) return a;
     tie(a, b) = minmax(tempo[a], tempo[b]);
-    return path[query(a, b)];
+    return path[rmq.query_min(a, b)];
 }
 
 int dist(int a, int b){
