@@ -1,10 +1,10 @@
 // Créditos: ShahjalalShohag
 // O(N)
 struct SA{
-	int n;
-	string s;
-	vector<int> sa, lcp, pos;
-	RMQ<int> rmq;
+    int n;
+    string s;
+    vector<int> sa, lcp, pos;
+    RMQ<int> rmq;
 
     void induced_sort(vector<int> &vec, int val, vector<int> &sa, vector<bool> &sl, vector<int> &lms){
         vector<int> l(val), r(val);
@@ -80,51 +80,51 @@ struct SA{
         return sa;
     }
 
-	vector<int> build_lcp(){
-		int n=(int)s.size(), k=0;
-		vector<int> rank(n), lcp(n);
-		for(int i=0; i<n; i++) rank[sa[i]] = i;
+    vector<int> build_lcp(){
+        int n=(int)s.size(), k=0;
+        vector<int> rank(n), lcp(n);
+        for(int i=0; i<n; i++) rank[sa[i]] = i;
 
-		for(int i=0; i<n; i++, k-=!!k){
-			if(rank[i]==n-1) {k=0; continue;}
-			int j=sa[rank[i]+1];
-			while(i+k<n && j+k<n && s[i+k]==s[j+k]) k++;
-			lcp[rank[i]] = k;
-		}
-		return lcp;
-	}
+        for(int i=0; i<n; i++, k-=!!k){
+            if(rank[i]==n-1) {k=0; continue;}
+            int j=sa[rank[i]+1];
+            while(i+k<n && j+k<n && s[i+k]==s[j+k]) k++;
+            lcp[rank[i]] = k;
+        }
+        return lcp;
+    }
 
-	SA() {}
+    SA() {}
 
-	SA(string s) : s(s), n((int)s.size()), pos(n){
-		sa = suffix_array();
-		lcp = build_lcp();
-		rmq = RMQ(lcp);
-		for(int i=0; i<n; i++) pos[sa[i]]=i;
-	}
+    SA(string s) : s(s), n((int)s.size()), pos(n){
+        sa = suffix_array();
+        lcp = build_lcp();
+        rmq = RMQ(lcp);
+        for(int i=0; i<n; i++) pos[sa[i]]=i;
+    }
 
-	int get_lcp(int i, int j){ // lcp na posição i, indica o lcp das posições i e i+1 do sa
-		if(i==j) return n-i;
-		int l = pos[i], r = pos[j];
+    int get_lcp(int i, int j){ // lcp na posição i, indica o lcp das posições i e i+1 do sa
+        if(i==j) return n-i;
+        int l = pos[i], r = pos[j];
 
-		if(l>r) swap(l, r);
+        if(l>r) swap(l, r);
 
-		return rmq.query_min(l, r);
-	}
+        return rmq.query_min(l, r);
+    }
 
-	// string s = a + '+' + b;
-	pair<int, int> lcs(int m){ // m é o tamanho da string a
-		int maior = 0, pos = -1;
-		for(int i=2; i<n; i++){
-			if((sa[i]<m) != (sa[i-1]<m)){
-				if(lcp[i-1]>maior) maior = lcp[i-1], pos = sa[i];
-			}
-		}
-		return {maior, pos};
-	}
+    // string s = a + '+' + b;
+    pair<int, int> lcs(int m){ // m é o tamanho da string a
+        int maior = 0, pos = -1;
+        for(int i=2; i<n; i++){
+            if((sa[i]<m) != (sa[i-1]<m)){
+                if(lcp[i-1]>maior) maior = lcp[i-1], pos = sa[i];
+            }
+        }
+        return {maior, pos};
+    }
 
-	ll distinct_subs(){ // n*(n+1)/2 - sum(lcp[i])
-		ll resp = (ll)n*((ll)n+1)/2;
-		return resp - accumulate(lcp.begin(), lcp.end(), 0LL);
-	}
+    ll distinct_subs(){ // n*(n+1)/2 - sum(lcp[i])
+        ll resp = (ll)n*((ll)n+1)/2;
+        return resp - accumulate(lcp.begin(), lcp.end(), 0LL);
+    }
 };
