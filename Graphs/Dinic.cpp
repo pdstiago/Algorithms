@@ -1,6 +1,6 @@
 // O(min(V*max_flow, V²*E))
 // Grafo com capacidades 1: O(min(M*sqrt(M), M*N^(2/3)))
-// Todo vértice tem grau de entrada ou saída 1: O(M*sqrt(N))
+// Todo vértice tem grau de entrada ou saída 1 e a maior capacidade é 1: O(sqrt(N)*M)
 template<typename T>
 struct Dinic{
     struct Edge {int v, u; T cap, flow;};
