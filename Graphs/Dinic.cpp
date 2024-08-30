@@ -9,6 +9,8 @@ struct Dinic{
     vector<vector<int> > vec;
     vector<int> lv, pos;
     queue<int> fila;
+
+    Dinic() {}
  
     Dinic(int n) : vec(n), lv(n), pos(n) {}
  
