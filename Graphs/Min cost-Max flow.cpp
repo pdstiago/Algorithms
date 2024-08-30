@@ -1,8 +1,8 @@
 template<class flow_t, class cost_t> struct min_cost{ // O(F*(V+E)logV), F being the amount of flow
     static constexpr flow_t FLOW_EPS = flow_t(1e-10);
-	static constexpr flow_t FLOW_INF = numeric_limits<flow_t>::max();
-	static constexpr cost_t COST_EPS = cost_t(1e-10);
-	static constexpr cost_t COST_INF = numeric_limits<cost_t>::max();
+    static constexpr flow_t FLOW_INF = numeric_limits<flow_t>::max();
+    static constexpr cost_t COST_EPS = cost_t(1e-10);
+    static constexpr cost_t COST_INF = numeric_limits<cost_t>::max();
 
     int n, m=0;
     vector<int> ptr, nxt, zu, pari;
