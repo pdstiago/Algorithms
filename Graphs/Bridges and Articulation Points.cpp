@@ -1,9 +1,8 @@
 int memo[mxn], tin[mxn], low[mxn], artic[mxn], cont;
-vector<pair<int, int> > bridges;
 
 void dfs(int x, int p){
     memo[x]=1;
-    tin[x]=low[x]=++cont;
+    tin[x]=low[x]=cont++;
     int children=0;
     for(int i:vec[x]){
         if(i==p) continue;
@@ -12,9 +11,7 @@ void dfs(int x, int p){
         }else{
             dfs(i, x);
             low[x]=min(low[x], low[i]);
-            if(low[i]>tin[x]){
-                bridges.push_back({min(i, x), max(i, x)});
-            }
+            if(low[i]>tin[x]){/*is bridge*/}
             if(low[i]>=tin[x] && p) artic[x]=1;
             children++;
         }
@@ -24,13 +21,10 @@ void dfs(int x, int p){
 
 void build(){
     cont=0;
-    bridges.clear();
     for(int i=1; i<=n; i++){
         memo[i]=low[i]=tin[i]=artic[i]=0;
     }
     for(int i=1; i<=n; i++){
-        if(!memo[i]){
-            dfs(i, 0);
-        }
+        if(!memo[i]) dfs(i, 0);
     }
 }
