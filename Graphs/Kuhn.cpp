@@ -14,7 +14,7 @@ bool dfs(int x){
     }
     return 0;
 }
-pair<int, vector<pair<int, int> > > kuhn(){
+auto kuhn(){
     int resp=0;
     for(int i=1; i<=n; i++){
         for(int j:vec[i]){

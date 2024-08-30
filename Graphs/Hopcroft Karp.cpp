@@ -52,7 +52,7 @@ struct Hop{ // O(sqrt(V)*E), V number of vertices and E number of edges
         return resp;
     }
 
-    vector<pair<int, int> > pairs(){
+    auto pairs(){
         vector<pair<int, int> > ans;
         for(int i=1; i<=n; i++){
             if(pairn[i]) ans.push_back({i, pairn[i]});
