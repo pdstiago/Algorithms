@@ -1,37 +1,43 @@
 // O(N*M)
 // 1 - indexed
-vector<int> vec[mxn];
-int memo[mxn], pai[mxn], filho[mxn], temp[mxn];
+struct Kuhn {
+    int n, m, t;
+    vector<int> memo, pai, filho;
+    vector<vector<int> > vec;
 
-bool dfs(int x){
-    if(memo[x]) return 0;
-    memo[x]=1;
-    for(int i:vec[x]){
-        if(!pai[i] || dfs(pai[i])){
-            pai[i]=x, filho[x]=i;
-            return 1;
-        }
+    Kunh(int n, int m) : n(n), m(m), memo(n+1), pai(n+1), filho(n+1), vec(n+1) {}
+
+    void add_edge(int a, int b){
+        vec[a].push_back(b);
     }
-    return 0;
-}
-auto kuhn(){
-    int resp=0;
-    for(int i=1; i<=n; i++){
-        for(int j:vec[i]){
-            if(!pai[j]){
-                pai[j]=i, filho[i]=j, temp[i]=1, resp++;
-                break;
+
+    bool dfs(int x){
+        if(memo[x] == t) return 0;
+        memo[x]=t;
+        for(int i:vec[x]){
+            if(!pai[i]){
+                pai[i] = x, filho[x] = i;
+                return 1;
             }
         }
+        for(int i:vec[x]){
+            if(dfs(pai[i])){
+                pai[i]=x, filho[x]=i;
+                return 1;
+            }
+        }
+        return 0;
     }
-    for(int i=1; i<=n; i++){
-        if(temp[i]) continue;
-        memset(memo, 0, sizeof(memo));
-        if(dfs(i)) resp++;
+    
+    int solve(){
+        int resp = 0, cur = 1;
+        while(cur){
+            cur = 0, t++;
+            for(int i=1; i<=n; i++){
+                if(!filho[i]) cur+=dfs(i);
+            }
+            resp+=cur;
+        }
+        return resp;
     }
-    vector<pair<int, int> > ans;
-    for(int i=1; i<=n; i++){
-        if(filho[i]) ans.push_back({i, filho[i]});
-    }
-    return {resp, ans};
-}
+};
