@@ -16,9 +16,7 @@ int query(){
     int ans = 0;
     for(int i=20; i>=0; i--){
         if(!base[i]) continue;
-
         if(ans & (1<<i)) continue;
-
         ans^=base[i];
     }
     return ans;
