@@ -1,11 +1,11 @@
 // O(N*M)
 // 1 - indexed
 struct Kuhn {
-    int n, m, t;
+    int n, m, t = 0;
     vector<int> memo, pai, filho;
     vector<vector<int> > vec;
 
-    Kunh(int n, int m) : n(n), m(m), memo(n+1), pai(n+1), filho(n+1), vec(n+1) {}
+    Kuhn(int n, int m) : n(n), m(m), memo(n+1), pai(n+1), filho(n+1), vec(n+1) {}
 
     void add_edge(int a, int b){
         vec[a].push_back(b);
