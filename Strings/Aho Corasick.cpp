@@ -47,18 +47,36 @@ struct Aho{
         }
     }
 
-    void run(string &ss){
+    void run_pos(string &ss){
         int state = 0, pos = 0;
         for(char ch:ss){
             int c = ch - 'a';
-            int nxt = trie[state][c];
-            int i = out[nxt];
+            state = trie[state][c];
+            int i = out[state];
             while(i!=-1){
                 // ocorrência da string i na posição pos
                 i = parent[i];
             }
-            state = nxt;
             pos++;
         }
+    }
+
+    void run_count(string &ss){
+        int state = 0;
+        vector<int> freq(n), freqNode(trie.size());
+        for(char ch:ss){
+            int c = ch - 'a';
+            state = trie[state][c];
+            freqNode[state]++;
+        }
+        for(int i=(int)bfs.size()-1; i>=0; i--){
+            int cur = bfs[i];
+            int pcur = f[cur];
+            freqNode[pcur]+=freqNode[cur];
+            if(out[cur]!=-1){
+                freq[out[cur]] = freqNode[cur];
+            }
+        }
+        // freq possui a frequência de cada string na string ss
     }
 };
