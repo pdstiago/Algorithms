@@ -21,9 +21,9 @@ template <class T> struct RMQ{ // 0-indexed
         }
     }
 
-    T query_min(int l, int r){ //[l, r)
+    T query(int l, int r){ //[l, r)
         int k = __lg(r-l);
-        return min(tab[k][l], tab[k][r-(1<<k)]);
+        return join(tab[k][l], tab[k][r-(1<<k)]);
     }
 
     T query_sum(int l, int r){ //[l, r)
