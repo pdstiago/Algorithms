@@ -9,7 +9,7 @@ void add_edge(int x, int sx, int y, int sy){
 
     // (+ 2 - 1) quero topping 2, mas não quero o 1
     // f = (x1 ou y1) e ... (xn ou yn), se f == 1, então é possível
-    // (x1 ou y1) = x1 -> ~y1 = y1 -> ~x1
+    // (x1 ou y1) = ~x1 -> y1 e ~y1 -> x1
     // se x1 e ~x1 estiverem na mesma scc é impossível
 
     // c1=(sa=='+'?1:0);
