@@ -8,31 +8,31 @@
  */
  
 struct DP { ///start-hash
-	vector<vector<int> > a;
-	vector<int> old, cur;
-	DP(const vector<vector<int> >&_a, int n): a(_a), old(n+1, INF), cur(n+1, INF) {}
+	const vector<vector<int> > &a;
+	vector<int> old, cur, opt;
+	DP(const vector<vector<int> >&_a, int n): a(_a), opt(n+1), old(n+1, INF), cur(n+1, INF) {}
 	int C(int l, int r){
 		return a[l][r];
 	} ///end-hash
 	int f(int ind, int k) { return old[k-1] + C(k, ind); } ///start-hash
-	void store(int ind, int k, int v) { cur[ind] = v; }
 	void rec(int L, int R, int LO, int HI) {
 		if (L > R) return;
 		int mid = (L + R) >> 1;
 		pair<int, int> best(INF, LO);
-		for(int k = LO; k <= min(HI, mid); ++k){
-            best = min(best, make_pair(f(mid, k), k));
-        }
-		store(mid, best.second, best.first);
+		for(int k = max(opt[mid], LO); k <= min(HI, mid); k++){
+			best = min(best, make_pair(f(mid, k), k));
+		}
+		cur[mid] = best.first;
 		rec(L, mid-1, LO, best.second);
 		rec(mid+1, R, best.second, HI);
+		opt[mid] = best.second;
 	}
 }; ///end-hash
 
 auto dp = DP(calc, n);
 dp.old[0]=0;
 for(int i=0; i<k; i++){
-    dp.rec(1, n, 1, n);
-    swap(dp.old, dp.cur);
+	dp.rec(1, n, 1, n);
+	swap(dp.old, dp.cur);
 }
 return dp.old[n];
